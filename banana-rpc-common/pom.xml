@@ -22,6 +22,7 @@
         <kryo-shaded.version>4.0.2</kryo-shaded.version>
         <protobuf-java.version>3.18.0</protobuf-java.version>
         <protobuf-maven-plugin.version>0.5.1</protobuf-maven-plugin.version>
+        <commons-codec.version>1.15</commons-codec.version>
     </properties>
 
     <dependencies>
@@ -43,7 +44,7 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.15</version>
+            <version>${commons-codec.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -59,11 +60,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
-            <version>1.7.25</version>
         </dependency>
     </dependencies>
 
