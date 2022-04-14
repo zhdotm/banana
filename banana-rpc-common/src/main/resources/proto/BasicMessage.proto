@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+option java_package = "com.mzh.banana.common.protocol";
+option java_outer_classname = "BasicMessage";
+
+//消息头类型
+enum HeaderType {
+
+  //认证
+  AUTHENTICATION = 0;
+
+  //心跳
+  HEART_BEAT = 1;
+
+  //请求
+  REQ = 2;
+
+  //响应
+  RESP = 3;
+}
+
+//心跳类型
+enum BeatType {
+
+  //ping
+  PING = 0;
+
+  //pong
+  PONG = 1;
+}
+
+//状态类型
+enum StatusType {
+
+  //成功
+  SUCCESS = 0;
+
+  //失败
+  FAIL = 1;
+
+  //异常
+  EXCEPTION = 3;
+}
+
+//消息头
+message Header {
+
+  //消息版本号
+  uint32 version = 1;
+
+  //请求头类型
+  optional HeaderType type = 2;
+
+  //请求和响应成对对应的唯一ID
+  string uniqueId = 3;
+
+  //心跳动作类型
+  optional BeatType beat = 4;
+
+  //令牌
+  optional string accessToken = 5;
+
+  //会话ID
+  optional string sessionId = 6;
+}
+
+//消息体
+message Body {
+
+  //状态编码
+  StatusType status = 1;
+
+  //内容
+  optional bytes data = 2;
+
+  //成功、失败、异常信息描述
+  optional string info = 3;
+}
+
+message Message {
+
+  //消息头
+  Header header = 1;
+
+  //消息体
+  optional Body body = 2;
+}
