@@ -2,6 +2,7 @@ package io.github.zhdotm.banana.common.handler.biz;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import io.github.zhdotm.banana.common.constant.BootTypeEnum;
 import io.github.zhdotm.banana.common.serializer.holder.GlobalSerializerHolder;
 import io.github.zhdotm.banana.common.constant.AttributeKeyEnum;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
@@ -29,6 +30,20 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
      */
     public abstract String getName();
 
+    /**
+     * 适用的引导类型
+     *
+     * @return 引导类型
+     */
+    public abstract BootTypeEnum getBootType();
+
+    /**
+     * 获取排序ID
+     *
+     * @return 排序ID
+     */
+    public abstract Integer getSortId();
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, BasicMessage.Message msg) throws Exception {
         BasicMessage.Header header = msg.getHeader();
@@ -48,7 +63,7 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
             if (StrUtil.isBlank(requestCommand.getUniqueId())) {
                 requestCommand.setUniqueId(header.getUniqueId());
             }
-            ResponseCommand responseCommand = doReq(requestCommand);
+            ResponseCommand responseCommand = callReq(requestCommand);
 
             String sessionId = AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel());
             ChannelSessionHolder channelSessionHolder = ChannelSessionHolder.getInstance();
@@ -58,7 +73,7 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
 
         if (header.getType() == BasicMessage.HeaderType.RESP) {
             ResponseCommand responseCommand = GlobalSerializerHolder.deserialize(dataBytes, ResponseCommand.class);
-            doResp(responseCommand);
+            callResp(responseCommand);
         }
 
     }
@@ -69,13 +84,13 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
      * @param requestCommand 调用命令
      * @return 响应命令
      */
-    protected abstract ResponseCommand doReq(RequestCommand requestCommand);
+    protected abstract ResponseCommand callReq(RequestCommand requestCommand);
 
     /**
      * 返回
      *
      * @param responseCommand 返回命令
      */
-    protected abstract void doResp(ResponseCommand responseCommand);
+    protected abstract void callResp(ResponseCommand responseCommand);
 
 }
