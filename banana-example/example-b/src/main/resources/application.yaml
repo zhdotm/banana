@@ -1,0 +1,8 @@
+banana:
+  port: 8899
+spring:
+  application:
+    name: bapp
+
+server:
+  port: 7788

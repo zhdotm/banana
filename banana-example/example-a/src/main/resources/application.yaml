@@ -1,0 +1,7 @@
+banana:
+  port: 8888
+spring:
+  application:
+    name: aapp
+server:
+  port: 7777
