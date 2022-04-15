@@ -11,25 +11,21 @@
 
     <artifactId>banana-common</artifactId>
     <description>远程服务调用核心包</description>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <netty.version>4.1.69.Final</netty.version>
-        <lombok.version>1.18.22</lombok.version>
-        <slf4j-api.version>1.7.36</slf4j-api.version>
         <hutool.version>5.7.16</hutool.version>
         <kryo-shaded.version>4.0.2</kryo-shaded.version>
         <protobuf-java.version>3.18.0</protobuf-java.version>
         <protobuf-maven-plugin.version>0.5.1</protobuf-maven-plugin.version>
-        <commons-codec.version>1.15</commons-codec.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>${netty.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>
@@ -44,7 +40,6 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>${commons-codec.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -54,12 +49,10 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 

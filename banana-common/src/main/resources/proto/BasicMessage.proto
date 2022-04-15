@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.mzh.banana.common.protocol";
+option java_package = "io.github.zhdotm.banana.common.protocol";
 option java_outer_classname = "BasicMessage";
 
 //消息头类型

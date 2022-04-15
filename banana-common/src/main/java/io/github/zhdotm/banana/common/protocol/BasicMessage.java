@@ -150,7 +150,7 @@ public final class BasicMessage {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return BasicMessage.getDescriptor().getEnumTypes().get(0);
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final HeaderType[] VALUES = values();
@@ -278,7 +278,7 @@ public final class BasicMessage {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return BasicMessage.getDescriptor().getEnumTypes().get(1);
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.getDescriptor().getEnumTypes().get(1);
     }
 
     private static final BeatType[] VALUES = values();
@@ -423,7 +423,7 @@ public final class BasicMessage {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return BasicMessage.getDescriptor().getEnumTypes().get(2);
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final StatusType[] VALUES = values();
@@ -489,7 +489,7 @@ public final class BasicMessage {
      * <code>optional .HeaderType type = 2;</code>
      * @return The type.
      */
-    BasicMessage.HeaderType getType();
+    io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType getType();
 
     /**
      * <pre>
@@ -537,7 +537,7 @@ public final class BasicMessage {
      * <code>optional .BeatType beat = 4;</code>
      * @return The beat.
      */
-    BasicMessage.BeatType getBeat();
+    io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType getBeat();
 
     /**
      * <pre>
@@ -708,15 +708,15 @@ public final class BasicMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return BasicMessage.internal_static_Header_descriptor;
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Header_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return BasicMessage.internal_static_Header_fieldAccessorTable
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Header_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              BasicMessage.Header.class, BasicMessage.Header.Builder.class);
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Header.class, io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder.class);
     }
 
     private int bitField0_;
@@ -767,10 +767,10 @@ public final class BasicMessage {
      * <code>optional .HeaderType type = 2;</code>
      * @return The type.
      */
-    @java.lang.Override public BasicMessage.HeaderType getType() {
+    @java.lang.Override public io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType getType() {
       @SuppressWarnings("deprecation")
-      BasicMessage.HeaderType result = BasicMessage.HeaderType.valueOf(type_);
-      return result == null ? BasicMessage.HeaderType.UNRECOGNIZED : result;
+      io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType result = io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType.valueOf(type_);
+      return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType.UNRECOGNIZED : result;
     }
 
     public static final int UNIQUEID_FIELD_NUMBER = 3;
@@ -851,10 +851,10 @@ public final class BasicMessage {
      * <code>optional .BeatType beat = 4;</code>
      * @return The beat.
      */
-    @java.lang.Override public BasicMessage.BeatType getBeat() {
+    @java.lang.Override public io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType getBeat() {
       @SuppressWarnings("deprecation")
-      BasicMessage.BeatType result = BasicMessage.BeatType.valueOf(beat_);
-      return result == null ? BasicMessage.BeatType.UNRECOGNIZED : result;
+      io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType result = io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType.valueOf(beat_);
+      return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType.UNRECOGNIZED : result;
     }
 
     public static final int ACCESSTOKEN_FIELD_NUMBER = 5;
@@ -1045,10 +1045,10 @@ public final class BasicMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof BasicMessage.Header)) {
+      if (!(obj instanceof io.github.zhdotm.banana.common.protocol.BasicMessage.Header)) {
         return super.equals(obj);
       }
-      BasicMessage.Header other = (BasicMessage.Header) obj;
+      io.github.zhdotm.banana.common.protocol.BasicMessage.Header other = (io.github.zhdotm.banana.common.protocol.BasicMessage.Header) obj;
 
       if (getVersion()
           != other.getVersion()) return false;
@@ -1108,69 +1108,69 @@ public final class BasicMessage {
       return hash;
     }
 
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Header parseFrom(byte[] data)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Header parseFrom(java.io.InputStream input)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BasicMessage.Header parseDelimitedFrom(java.io.InputStream input)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static BasicMessage.Header parseDelimitedFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BasicMessage.Header parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1183,7 +1183,7 @@ public final class BasicMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BasicMessage.Header prototype) {
+    public static Builder newBuilder(io.github.zhdotm.banana.common.protocol.BasicMessage.Header prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1208,21 +1208,21 @@ public final class BasicMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Header)
-        BasicMessage.HeaderOrBuilder {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return BasicMessage.internal_static_Header_descriptor;
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Header_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return BasicMessage.internal_static_Header_fieldAccessorTable
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Header_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                BasicMessage.Header.class, BasicMessage.Header.Builder.class);
+                io.github.zhdotm.banana.common.protocol.BasicMessage.Header.class, io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder.class);
       }
 
-      // Construct using com.mzh.banana.common.protocol.BasicMessage.Header.newBuilder()
+      // Construct using io.github.zhdotm.banana.common.protocol.BasicMessage.Header.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1258,17 +1258,17 @@ public final class BasicMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return BasicMessage.internal_static_Header_descriptor;
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Header_descriptor;
       }
 
       @java.lang.Override
-      public BasicMessage.Header getDefaultInstanceForType() {
-        return BasicMessage.Header.getDefaultInstance();
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Header getDefaultInstanceForType() {
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.Header.getDefaultInstance();
       }
 
       @java.lang.Override
-      public BasicMessage.Header build() {
-        BasicMessage.Header result = buildPartial();
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Header build() {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Header result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1276,8 +1276,8 @@ public final class BasicMessage {
       }
 
       @java.lang.Override
-      public BasicMessage.Header buildPartial() {
-        BasicMessage.Header result = new BasicMessage.Header(this);
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Header buildPartial() {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Header result = new io.github.zhdotm.banana.common.protocol.BasicMessage.Header(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.version_ = version_;
@@ -1337,16 +1337,16 @@ public final class BasicMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof BasicMessage.Header) {
-          return mergeFrom((BasicMessage.Header)other);
+        if (other instanceof io.github.zhdotm.banana.common.protocol.BasicMessage.Header) {
+          return mergeFrom((io.github.zhdotm.banana.common.protocol.BasicMessage.Header)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(BasicMessage.Header other) {
-        if (other == BasicMessage.Header.getDefaultInstance()) return this;
+      public Builder mergeFrom(io.github.zhdotm.banana.common.protocol.BasicMessage.Header other) {
+        if (other == io.github.zhdotm.banana.common.protocol.BasicMessage.Header.getDefaultInstance()) return this;
         if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
@@ -1385,11 +1385,11 @@ public final class BasicMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        BasicMessage.Header parsedMessage = null;
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Header parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (BasicMessage.Header) e.getUnfinishedMessage();
+          parsedMessage = (io.github.zhdotm.banana.common.protocol.BasicMessage.Header) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1490,10 +1490,10 @@ public final class BasicMessage {
        * @return The type.
        */
       @java.lang.Override
-      public BasicMessage.HeaderType getType() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType getType() {
         @SuppressWarnings("deprecation")
-        BasicMessage.HeaderType result = BasicMessage.HeaderType.valueOf(type_);
-        return result == null ? BasicMessage.HeaderType.UNRECOGNIZED : result;
+        io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType result = io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType.valueOf(type_);
+        return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType.UNRECOGNIZED : result;
       }
       /**
        * <pre>
@@ -1504,7 +1504,7 @@ public final class BasicMessage {
        * @param value The type to set.
        * @return This builder for chaining.
        */
-      public Builder setType(BasicMessage.HeaderType value) {
+      public Builder setType(io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1671,10 +1671,10 @@ public final class BasicMessage {
        * @return The beat.
        */
       @java.lang.Override
-      public BasicMessage.BeatType getBeat() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType getBeat() {
         @SuppressWarnings("deprecation")
-        BasicMessage.BeatType result = BasicMessage.BeatType.valueOf(beat_);
-        return result == null ? BasicMessage.BeatType.UNRECOGNIZED : result;
+        io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType result = io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType.valueOf(beat_);
+        return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType.UNRECOGNIZED : result;
       }
       /**
        * <pre>
@@ -1685,7 +1685,7 @@ public final class BasicMessage {
        * @param value The beat to set.
        * @return This builder for chaining.
        */
-      public Builder setBeat(BasicMessage.BeatType value) {
+      public Builder setBeat(io.github.zhdotm.banana.common.protocol.BasicMessage.BeatType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1939,12 +1939,12 @@ public final class BasicMessage {
     }
 
     // @@protoc_insertion_point(class_scope:Header)
-    private static final BasicMessage.Header DEFAULT_INSTANCE;
+    private static final io.github.zhdotm.banana.common.protocol.BasicMessage.Header DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new BasicMessage.Header();
+      DEFAULT_INSTANCE = new io.github.zhdotm.banana.common.protocol.BasicMessage.Header();
     }
 
-    public static BasicMessage.Header getDefaultInstance() {
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Header getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1969,7 +1969,7 @@ public final class BasicMessage {
     }
 
     @java.lang.Override
-    public BasicMessage.Header getDefaultInstanceForType() {
+    public io.github.zhdotm.banana.common.protocol.BasicMessage.Header getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1996,7 +1996,7 @@ public final class BasicMessage {
      * <code>.StatusType status = 1;</code>
      * @return The status.
      */
-    BasicMessage.StatusType getStatus();
+    io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType getStatus();
 
     /**
      * <pre>
@@ -2137,15 +2137,15 @@ public final class BasicMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return BasicMessage.internal_static_Body_descriptor;
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Body_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return BasicMessage.internal_static_Body_fieldAccessorTable
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Body_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              BasicMessage.Body.class, BasicMessage.Body.Builder.class);
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Body.class, io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder.class);
     }
 
     private int bitField0_;
@@ -2170,10 +2170,10 @@ public final class BasicMessage {
      * <code>.StatusType status = 1;</code>
      * @return The status.
      */
-    @java.lang.Override public BasicMessage.StatusType getStatus() {
+    @java.lang.Override public io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType getStatus() {
       @SuppressWarnings("deprecation")
-      BasicMessage.StatusType result = BasicMessage.StatusType.valueOf(status_);
-      return result == null ? BasicMessage.StatusType.UNRECOGNIZED : result;
+      io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType result = io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.valueOf(status_);
+      return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.UNRECOGNIZED : result;
     }
 
     public static final int DATA_FIELD_NUMBER = 2;
@@ -2275,7 +2275,7 @@ public final class BasicMessage {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (status_ != BasicMessage.StatusType.SUCCESS.getNumber()) {
+      if (status_ != io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.SUCCESS.getNumber()) {
         output.writeEnum(1, status_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
@@ -2293,7 +2293,7 @@ public final class BasicMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (status_ != BasicMessage.StatusType.SUCCESS.getNumber()) {
+      if (status_ != io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.SUCCESS.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, status_);
       }
@@ -2314,10 +2314,10 @@ public final class BasicMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof BasicMessage.Body)) {
+      if (!(obj instanceof io.github.zhdotm.banana.common.protocol.BasicMessage.Body)) {
         return super.equals(obj);
       }
-      BasicMessage.Body other = (BasicMessage.Body) obj;
+      io.github.zhdotm.banana.common.protocol.BasicMessage.Body other = (io.github.zhdotm.banana.common.protocol.BasicMessage.Body) obj;
 
       if (status_ != other.status_) return false;
       if (hasData() != other.hasData()) return false;
@@ -2356,69 +2356,69 @@ public final class BasicMessage {
       return hash;
     }
 
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Body parseFrom(byte[] data)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Body parseFrom(java.io.InputStream input)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BasicMessage.Body parseDelimitedFrom(java.io.InputStream input)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static BasicMessage.Body parseDelimitedFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BasicMessage.Body parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2431,7 +2431,7 @@ public final class BasicMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BasicMessage.Body prototype) {
+    public static Builder newBuilder(io.github.zhdotm.banana.common.protocol.BasicMessage.Body prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2456,21 +2456,21 @@ public final class BasicMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Body)
-        BasicMessage.BodyOrBuilder {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.BodyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return BasicMessage.internal_static_Body_descriptor;
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Body_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return BasicMessage.internal_static_Body_fieldAccessorTable
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Body_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                BasicMessage.Body.class, BasicMessage.Body.Builder.class);
+                io.github.zhdotm.banana.common.protocol.BasicMessage.Body.class, io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder.class);
       }
 
-      // Construct using com.mzh.banana.common.protocol.BasicMessage.Body.newBuilder()
+      // Construct using io.github.zhdotm.banana.common.protocol.BasicMessage.Body.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2500,17 +2500,17 @@ public final class BasicMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return BasicMessage.internal_static_Body_descriptor;
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Body_descriptor;
       }
 
       @java.lang.Override
-      public BasicMessage.Body getDefaultInstanceForType() {
-        return BasicMessage.Body.getDefaultInstance();
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Body getDefaultInstanceForType() {
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance();
       }
 
       @java.lang.Override
-      public BasicMessage.Body build() {
-        BasicMessage.Body result = buildPartial();
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Body build() {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Body result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2518,8 +2518,8 @@ public final class BasicMessage {
       }
 
       @java.lang.Override
-      public BasicMessage.Body buildPartial() {
-        BasicMessage.Body result = new BasicMessage.Body(this);
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Body buildPartial() {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Body result = new io.github.zhdotm.banana.common.protocol.BasicMessage.Body(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.status_ = status_;
@@ -2570,16 +2570,16 @@ public final class BasicMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof BasicMessage.Body) {
-          return mergeFrom((BasicMessage.Body)other);
+        if (other instanceof io.github.zhdotm.banana.common.protocol.BasicMessage.Body) {
+          return mergeFrom((io.github.zhdotm.banana.common.protocol.BasicMessage.Body)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(BasicMessage.Body other) {
-        if (other == BasicMessage.Body.getDefaultInstance()) return this;
+      public Builder mergeFrom(io.github.zhdotm.banana.common.protocol.BasicMessage.Body other) {
+        if (other == io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance()) return this;
         if (other.status_ != 0) {
           setStatusValue(other.getStatusValue());
         }
@@ -2606,11 +2606,11 @@ public final class BasicMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        BasicMessage.Body parsedMessage = null;
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Body parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (BasicMessage.Body) e.getUnfinishedMessage();
+          parsedMessage = (io.github.zhdotm.banana.common.protocol.BasicMessage.Body) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2657,10 +2657,10 @@ public final class BasicMessage {
        * @return The status.
        */
       @java.lang.Override
-      public BasicMessage.StatusType getStatus() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType getStatus() {
         @SuppressWarnings("deprecation")
-        BasicMessage.StatusType result = BasicMessage.StatusType.valueOf(status_);
-        return result == null ? BasicMessage.StatusType.UNRECOGNIZED : result;
+        io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType result = io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.valueOf(status_);
+        return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.UNRECOGNIZED : result;
       }
       /**
        * <pre>
@@ -2671,7 +2671,7 @@ public final class BasicMessage {
        * @param value The status to set.
        * @return This builder for chaining.
        */
-      public Builder setStatus(BasicMessage.StatusType value) {
+      public Builder setStatus(io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2876,12 +2876,12 @@ public final class BasicMessage {
     }
 
     // @@protoc_insertion_point(class_scope:Body)
-    private static final BasicMessage.Body DEFAULT_INSTANCE;
+    private static final io.github.zhdotm.banana.common.protocol.BasicMessage.Body DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new BasicMessage.Body();
+      DEFAULT_INSTANCE = new io.github.zhdotm.banana.common.protocol.BasicMessage.Body();
     }
 
-    public static BasicMessage.Body getDefaultInstance() {
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Body getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2906,7 +2906,7 @@ public final class BasicMessage {
     }
 
     @java.lang.Override
-    public BasicMessage.Body getDefaultInstanceForType() {
+    public io.github.zhdotm.banana.common.protocol.BasicMessage.Body getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2933,7 +2933,7 @@ public final class BasicMessage {
      * <code>.Header header = 1;</code>
      * @return The header.
      */
-    BasicMessage.Header getHeader();
+    io.github.zhdotm.banana.common.protocol.BasicMessage.Header getHeader();
     /**
      * <pre>
      *消息头
@@ -2941,7 +2941,7 @@ public final class BasicMessage {
      *
      * <code>.Header header = 1;</code>
      */
-    BasicMessage.HeaderOrBuilder getHeaderOrBuilder();
+    io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderOrBuilder getHeaderOrBuilder();
 
     /**
      * <pre>
@@ -2960,7 +2960,7 @@ public final class BasicMessage {
      * <code>optional .Body body = 2;</code>
      * @return The body.
      */
-    BasicMessage.Body getBody();
+    io.github.zhdotm.banana.common.protocol.BasicMessage.Body getBody();
     /**
      * <pre>
      *消息体
@@ -2968,7 +2968,7 @@ public final class BasicMessage {
      *
      * <code>optional .Body body = 2;</code>
      */
-    BasicMessage.BodyOrBuilder getBodyOrBuilder();
+    io.github.zhdotm.banana.common.protocol.BasicMessage.BodyOrBuilder getBodyOrBuilder();
   }
   /**
    * Protobuf type {@code Message}
@@ -3017,11 +3017,11 @@ public final class BasicMessage {
               done = true;
               break;
             case 10: {
-              BasicMessage.Header.Builder subBuilder = null;
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder subBuilder = null;
               if (header_ != null) {
                 subBuilder = header_.toBuilder();
               }
-              header_ = input.readMessage(BasicMessage.Header.parser(), extensionRegistry);
+              header_ = input.readMessage(io.github.zhdotm.banana.common.protocol.BasicMessage.Header.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(header_);
                 header_ = subBuilder.buildPartial();
@@ -3030,11 +3030,11 @@ public final class BasicMessage {
               break;
             }
             case 18: {
-              BasicMessage.Body.Builder subBuilder = null;
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder subBuilder = null;
               if (((bitField0_ & 0x00000001) != 0)) {
                 subBuilder = body_.toBuilder();
               }
-              body_ = input.readMessage(BasicMessage.Body.parser(), extensionRegistry);
+              body_ = input.readMessage(io.github.zhdotm.banana.common.protocol.BasicMessage.Body.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(body_);
                 body_ = subBuilder.buildPartial();
@@ -3063,20 +3063,20 @@ public final class BasicMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return BasicMessage.internal_static_Message_descriptor;
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Message_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return BasicMessage.internal_static_Message_fieldAccessorTable
+      return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Message_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              BasicMessage.Message.class, BasicMessage.Message.Builder.class);
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Message.class, io.github.zhdotm.banana.common.protocol.BasicMessage.Message.Builder.class);
     }
 
     private int bitField0_;
     public static final int HEADER_FIELD_NUMBER = 1;
-    private BasicMessage.Header header_;
+    private io.github.zhdotm.banana.common.protocol.BasicMessage.Header header_;
     /**
      * <pre>
      *消息头
@@ -3098,8 +3098,8 @@ public final class BasicMessage {
      * @return The header.
      */
     @java.lang.Override
-    public BasicMessage.Header getHeader() {
-      return header_ == null ? BasicMessage.Header.getDefaultInstance() : header_;
+    public io.github.zhdotm.banana.common.protocol.BasicMessage.Header getHeader() {
+      return header_ == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.Header.getDefaultInstance() : header_;
     }
     /**
      * <pre>
@@ -3109,12 +3109,12 @@ public final class BasicMessage {
      * <code>.Header header = 1;</code>
      */
     @java.lang.Override
-    public BasicMessage.HeaderOrBuilder getHeaderOrBuilder() {
+    public io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderOrBuilder getHeaderOrBuilder() {
       return getHeader();
     }
 
     public static final int BODY_FIELD_NUMBER = 2;
-    private BasicMessage.Body body_;
+    private io.github.zhdotm.banana.common.protocol.BasicMessage.Body body_;
     /**
      * <pre>
      *消息体
@@ -3136,8 +3136,8 @@ public final class BasicMessage {
      * @return The body.
      */
     @java.lang.Override
-    public BasicMessage.Body getBody() {
-      return body_ == null ? BasicMessage.Body.getDefaultInstance() : body_;
+    public io.github.zhdotm.banana.common.protocol.BasicMessage.Body getBody() {
+      return body_ == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance() : body_;
     }
     /**
      * <pre>
@@ -3147,8 +3147,8 @@ public final class BasicMessage {
      * <code>optional .Body body = 2;</code>
      */
     @java.lang.Override
-    public BasicMessage.BodyOrBuilder getBodyOrBuilder() {
-      return body_ == null ? BasicMessage.Body.getDefaultInstance() : body_;
+    public io.github.zhdotm.banana.common.protocol.BasicMessage.BodyOrBuilder getBodyOrBuilder() {
+      return body_ == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance() : body_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3198,10 +3198,10 @@ public final class BasicMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof BasicMessage.Message)) {
+      if (!(obj instanceof io.github.zhdotm.banana.common.protocol.BasicMessage.Message)) {
         return super.equals(obj);
       }
-      BasicMessage.Message other = (BasicMessage.Message) obj;
+      io.github.zhdotm.banana.common.protocol.BasicMessage.Message other = (io.github.zhdotm.banana.common.protocol.BasicMessage.Message) obj;
 
       if (hasHeader() != other.hasHeader()) return false;
       if (hasHeader()) {
@@ -3237,69 +3237,69 @@ public final class BasicMessage {
       return hash;
     }
 
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Message parseFrom(byte[] data)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BasicMessage.Message parseFrom(java.io.InputStream input)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BasicMessage.Message parseDelimitedFrom(java.io.InputStream input)
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static BasicMessage.Message parseDelimitedFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BasicMessage.Message parseFrom(
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3312,7 +3312,7 @@ public final class BasicMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BasicMessage.Message prototype) {
+    public static Builder newBuilder(io.github.zhdotm.banana.common.protocol.BasicMessage.Message prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -3333,21 +3333,21 @@ public final class BasicMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Message)
-        BasicMessage.MessageOrBuilder {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.MessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return BasicMessage.internal_static_Message_descriptor;
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Message_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return BasicMessage.internal_static_Message_fieldAccessorTable
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Message_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                BasicMessage.Message.class, BasicMessage.Message.Builder.class);
+                io.github.zhdotm.banana.common.protocol.BasicMessage.Message.class, io.github.zhdotm.banana.common.protocol.BasicMessage.Message.Builder.class);
       }
 
-      // Construct using com.mzh.banana.common.protocol.BasicMessage.Message.newBuilder()
+      // Construct using io.github.zhdotm.banana.common.protocol.BasicMessage.Message.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3384,17 +3384,17 @@ public final class BasicMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return BasicMessage.internal_static_Message_descriptor;
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.internal_static_Message_descriptor;
       }
 
       @java.lang.Override
-      public BasicMessage.Message getDefaultInstanceForType() {
-        return BasicMessage.Message.getDefaultInstance();
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Message getDefaultInstanceForType() {
+        return io.github.zhdotm.banana.common.protocol.BasicMessage.Message.getDefaultInstance();
       }
 
       @java.lang.Override
-      public BasicMessage.Message build() {
-        BasicMessage.Message result = buildPartial();
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Message build() {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Message result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -3402,8 +3402,8 @@ public final class BasicMessage {
       }
 
       @java.lang.Override
-      public BasicMessage.Message buildPartial() {
-        BasicMessage.Message result = new BasicMessage.Message(this);
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Message buildPartial() {
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Message result = new io.github.zhdotm.banana.common.protocol.BasicMessage.Message(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (headerBuilder_ == null) {
@@ -3458,16 +3458,16 @@ public final class BasicMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof BasicMessage.Message) {
-          return mergeFrom((BasicMessage.Message)other);
+        if (other instanceof io.github.zhdotm.banana.common.protocol.BasicMessage.Message) {
+          return mergeFrom((io.github.zhdotm.banana.common.protocol.BasicMessage.Message)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(BasicMessage.Message other) {
-        if (other == BasicMessage.Message.getDefaultInstance()) return this;
+      public Builder mergeFrom(io.github.zhdotm.banana.common.protocol.BasicMessage.Message other) {
+        if (other == io.github.zhdotm.banana.common.protocol.BasicMessage.Message.getDefaultInstance()) return this;
         if (other.hasHeader()) {
           mergeHeader(other.getHeader());
         }
@@ -3489,11 +3489,11 @@ public final class BasicMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        BasicMessage.Message parsedMessage = null;
+        io.github.zhdotm.banana.common.protocol.BasicMessage.Message parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (BasicMessage.Message) e.getUnfinishedMessage();
+          parsedMessage = (io.github.zhdotm.banana.common.protocol.BasicMessage.Message) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3504,9 +3504,9 @@ public final class BasicMessage {
       }
       private int bitField0_;
 
-      private BasicMessage.Header header_;
+      private io.github.zhdotm.banana.common.protocol.BasicMessage.Header header_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          BasicMessage.Header, BasicMessage.Header.Builder, BasicMessage.HeaderOrBuilder> headerBuilder_;
+          io.github.zhdotm.banana.common.protocol.BasicMessage.Header, io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder, io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderOrBuilder> headerBuilder_;
       /**
        * <pre>
        *消息头
@@ -3526,9 +3526,9 @@ public final class BasicMessage {
        * <code>.Header header = 1;</code>
        * @return The header.
        */
-      public BasicMessage.Header getHeader() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Header getHeader() {
         if (headerBuilder_ == null) {
-          return header_ == null ? BasicMessage.Header.getDefaultInstance() : header_;
+          return header_ == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.Header.getDefaultInstance() : header_;
         } else {
           return headerBuilder_.getMessage();
         }
@@ -3540,7 +3540,7 @@ public final class BasicMessage {
        *
        * <code>.Header header = 1;</code>
        */
-      public Builder setHeader(BasicMessage.Header value) {
+      public Builder setHeader(io.github.zhdotm.banana.common.protocol.BasicMessage.Header value) {
         if (headerBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3561,7 +3561,7 @@ public final class BasicMessage {
        * <code>.Header header = 1;</code>
        */
       public Builder setHeader(
-          BasicMessage.Header.Builder builderForValue) {
+          io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder builderForValue) {
         if (headerBuilder_ == null) {
           header_ = builderForValue.build();
           onChanged();
@@ -3578,11 +3578,11 @@ public final class BasicMessage {
        *
        * <code>.Header header = 1;</code>
        */
-      public Builder mergeHeader(BasicMessage.Header value) {
+      public Builder mergeHeader(io.github.zhdotm.banana.common.protocol.BasicMessage.Header value) {
         if (headerBuilder_ == null) {
           if (header_ != null) {
             header_ =
-              BasicMessage.Header.newBuilder(header_).mergeFrom(value).buildPartial();
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Header.newBuilder(header_).mergeFrom(value).buildPartial();
           } else {
             header_ = value;
           }
@@ -3618,7 +3618,7 @@ public final class BasicMessage {
        *
        * <code>.Header header = 1;</code>
        */
-      public BasicMessage.Header.Builder getHeaderBuilder() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder getHeaderBuilder() {
         
         onChanged();
         return getHeaderFieldBuilder().getBuilder();
@@ -3630,12 +3630,12 @@ public final class BasicMessage {
        *
        * <code>.Header header = 1;</code>
        */
-      public BasicMessage.HeaderOrBuilder getHeaderOrBuilder() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderOrBuilder getHeaderOrBuilder() {
         if (headerBuilder_ != null) {
           return headerBuilder_.getMessageOrBuilder();
         } else {
           return header_ == null ?
-              BasicMessage.Header.getDefaultInstance() : header_;
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Header.getDefaultInstance() : header_;
         }
       }
       /**
@@ -3646,11 +3646,11 @@ public final class BasicMessage {
        * <code>.Header header = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          BasicMessage.Header, BasicMessage.Header.Builder, BasicMessage.HeaderOrBuilder>
+          io.github.zhdotm.banana.common.protocol.BasicMessage.Header, io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder, io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderOrBuilder> 
           getHeaderFieldBuilder() {
         if (headerBuilder_ == null) {
           headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              BasicMessage.Header, BasicMessage.Header.Builder, BasicMessage.HeaderOrBuilder>(
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Header, io.github.zhdotm.banana.common.protocol.BasicMessage.Header.Builder, io.github.zhdotm.banana.common.protocol.BasicMessage.HeaderOrBuilder>(
                   getHeader(),
                   getParentForChildren(),
                   isClean());
@@ -3659,9 +3659,9 @@ public final class BasicMessage {
         return headerBuilder_;
       }
 
-      private BasicMessage.Body body_;
+      private io.github.zhdotm.banana.common.protocol.BasicMessage.Body body_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          BasicMessage.Body, BasicMessage.Body.Builder, BasicMessage.BodyOrBuilder> bodyBuilder_;
+          io.github.zhdotm.banana.common.protocol.BasicMessage.Body, io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder, io.github.zhdotm.banana.common.protocol.BasicMessage.BodyOrBuilder> bodyBuilder_;
       /**
        * <pre>
        *消息体
@@ -3681,9 +3681,9 @@ public final class BasicMessage {
        * <code>optional .Body body = 2;</code>
        * @return The body.
        */
-      public BasicMessage.Body getBody() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Body getBody() {
         if (bodyBuilder_ == null) {
-          return body_ == null ? BasicMessage.Body.getDefaultInstance() : body_;
+          return body_ == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance() : body_;
         } else {
           return bodyBuilder_.getMessage();
         }
@@ -3695,7 +3695,7 @@ public final class BasicMessage {
        *
        * <code>optional .Body body = 2;</code>
        */
-      public Builder setBody(BasicMessage.Body value) {
+      public Builder setBody(io.github.zhdotm.banana.common.protocol.BasicMessage.Body value) {
         if (bodyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3716,7 +3716,7 @@ public final class BasicMessage {
        * <code>optional .Body body = 2;</code>
        */
       public Builder setBody(
-          BasicMessage.Body.Builder builderForValue) {
+          io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder builderForValue) {
         if (bodyBuilder_ == null) {
           body_ = builderForValue.build();
           onChanged();
@@ -3733,13 +3733,13 @@ public final class BasicMessage {
        *
        * <code>optional .Body body = 2;</code>
        */
-      public Builder mergeBody(BasicMessage.Body value) {
+      public Builder mergeBody(io.github.zhdotm.banana.common.protocol.BasicMessage.Body value) {
         if (bodyBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
               body_ != null &&
-              body_ != BasicMessage.Body.getDefaultInstance()) {
+              body_ != io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance()) {
             body_ =
-              BasicMessage.Body.newBuilder(body_).mergeFrom(value).buildPartial();
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Body.newBuilder(body_).mergeFrom(value).buildPartial();
           } else {
             body_ = value;
           }
@@ -3774,7 +3774,7 @@ public final class BasicMessage {
        *
        * <code>optional .Body body = 2;</code>
        */
-      public BasicMessage.Body.Builder getBodyBuilder() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder getBodyBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
         return getBodyFieldBuilder().getBuilder();
@@ -3786,12 +3786,12 @@ public final class BasicMessage {
        *
        * <code>optional .Body body = 2;</code>
        */
-      public BasicMessage.BodyOrBuilder getBodyOrBuilder() {
+      public io.github.zhdotm.banana.common.protocol.BasicMessage.BodyOrBuilder getBodyOrBuilder() {
         if (bodyBuilder_ != null) {
           return bodyBuilder_.getMessageOrBuilder();
         } else {
           return body_ == null ?
-              BasicMessage.Body.getDefaultInstance() : body_;
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance() : body_;
         }
       }
       /**
@@ -3802,11 +3802,11 @@ public final class BasicMessage {
        * <code>optional .Body body = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          BasicMessage.Body, BasicMessage.Body.Builder, BasicMessage.BodyOrBuilder>
+          io.github.zhdotm.banana.common.protocol.BasicMessage.Body, io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder, io.github.zhdotm.banana.common.protocol.BasicMessage.BodyOrBuilder> 
           getBodyFieldBuilder() {
         if (bodyBuilder_ == null) {
           bodyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              BasicMessage.Body, BasicMessage.Body.Builder, BasicMessage.BodyOrBuilder>(
+              io.github.zhdotm.banana.common.protocol.BasicMessage.Body, io.github.zhdotm.banana.common.protocol.BasicMessage.Body.Builder, io.github.zhdotm.banana.common.protocol.BasicMessage.BodyOrBuilder>(
                   getBody(),
                   getParentForChildren(),
                   isClean());
@@ -3831,12 +3831,12 @@ public final class BasicMessage {
     }
 
     // @@protoc_insertion_point(class_scope:Message)
-    private static final BasicMessage.Message DEFAULT_INSTANCE;
+    private static final io.github.zhdotm.banana.common.protocol.BasicMessage.Message DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new BasicMessage.Message();
+      DEFAULT_INSTANCE = new io.github.zhdotm.banana.common.protocol.BasicMessage.Message();
     }
 
-    public static BasicMessage.Message getDefaultInstance() {
+    public static io.github.zhdotm.banana.common.protocol.BasicMessage.Message getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3861,7 +3861,7 @@ public final class BasicMessage {
     }
 
     @java.lang.Override
-    public BasicMessage.Message getDefaultInstanceForType() {
+    public io.github.zhdotm.banana.common.protocol.BasicMessage.Message getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3904,8 +3904,9 @@ public final class BasicMessage {
       "Type\022\022\n\016AUTHENTICATION\020\000\022\016\n\nHEART_BEAT\020\001" +
       "\022\007\n\003REQ\020\002\022\010\n\004RESP\020\003*\036\n\010BeatType\022\010\n\004PING\020" +
       "\000\022\010\n\004PONG\020\001*2\n\nStatusType\022\013\n\007SUCCESS\020\000\022\010" +
-      "\n\004FAIL\020\001\022\r\n\tEXCEPTION\020\003B.\n\036com.mzh.banan" +
-      "a.common.protocolB\014BasicMessageb\006proto3"
+      "\n\004FAIL\020\001\022\r\n\tEXCEPTION\020\003B7\n\'io.github.zhd" +
+      "otm.banana.common.protocolB\014BasicMessage" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
