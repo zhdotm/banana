@@ -19,7 +19,7 @@ public @interface BananaRemoteApi {
      *
      * @return 服务名称
      */
-    String serverName() default "";
+    String serverName();
 
     /**
      * 服务地址
