@@ -14,6 +14,8 @@
     <modules>
         <module>banana-common</module>
         <module>banana-starter</module>
+        <module>banana-example</module>
+        <module>banana-annotation</module>
     </modules>
 
     <properties>
