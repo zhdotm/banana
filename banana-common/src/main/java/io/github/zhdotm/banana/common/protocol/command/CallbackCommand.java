@@ -24,9 +24,9 @@ public class CallbackCommand implements Command, Serializable {
     private String commandId = "CALL_BACK";
 
     /**
-     * 类名
+     * 类
      */
-    private String clazzName;
+    private Class<?> clazz;
 
     /**
      * 方法名
@@ -34,8 +34,8 @@ public class CallbackCommand implements Command, Serializable {
     private String methodName;
 
     /**
-     * 参数类型列表
+     * 参数类（回调方法最多一个参数，且参数类型为返回值类型）
      */
-    private Class<?>[] parameterTypes = new Class[]{String.class, String.class, Object.class};
+    private Class<?> parameterClazz;
 
 }

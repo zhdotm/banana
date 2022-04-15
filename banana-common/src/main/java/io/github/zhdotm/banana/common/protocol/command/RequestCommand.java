@@ -29,6 +29,11 @@ public class RequestCommand implements Command, Serializable {
     private Boolean isNeedCallback = Boolean.FALSE;
 
     /**
+     * 是否是异步
+     */
+    private Boolean isAsync = Boolean.FALSE;
+
+    /**
      * 类名
      */
     private String clazzName;

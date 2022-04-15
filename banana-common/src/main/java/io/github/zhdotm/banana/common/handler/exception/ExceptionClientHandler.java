@@ -28,7 +28,7 @@ public class ExceptionClientHandler extends BasicExceptionHandler {
             log.error("客户端发生异常: ", cause);
         }
         //其他异常不主动关闭通道
-        log.error(cause.getMessage());
+        log.error("其他异常: ", cause);
     }
 
 }

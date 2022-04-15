@@ -3,6 +3,8 @@ package io.github.zhdotm.banana.common.handler.biz;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
+import io.github.zhdotm.banana.common.exception.BananaClientException;
+import io.github.zhdotm.banana.common.exception.BananaServerException;
 import io.github.zhdotm.banana.common.serializer.holder.GlobalSerializerHolder;
 import io.github.zhdotm.banana.common.constant.AttributeKeyEnum;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
@@ -10,6 +12,7 @@ import io.github.zhdotm.banana.common.protocol.command.RequestCommand;
 import io.github.zhdotm.banana.common.protocol.command.ResponseCommand;
 import io.github.zhdotm.banana.common.session.Session;
 import io.github.zhdotm.banana.common.session.holder.ChannelSessionHolder;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
+@ChannelHandler.Sharable
 public abstract class BizInboundHandler extends SimpleChannelInboundHandler<BasicMessage.Message> {
 
     /**
@@ -51,6 +55,16 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
         BasicMessage.StatusType status = body.getStatus();
         if (status != BasicMessage.StatusType.SUCCESS) {
             log.error(body.getInfo());
+            if (status == BasicMessage.StatusType.EXCEPTION) {
+                if (header.getType() == BasicMessage.HeaderType.REQ) {
+
+                    throw new BananaServerException(body.getInfo(), Boolean.TRUE);
+                }
+                if (header.getType() == BasicMessage.HeaderType.RESP) {
+
+                    throw new BananaClientException(body.getInfo(), Boolean.TRUE);
+                }
+            }
             return;
         }
         byte[] dataBytes = body.getData().toByteArray();
@@ -63,17 +77,18 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
             if (StrUtil.isBlank(requestCommand.getUniqueId())) {
                 requestCommand.setUniqueId(header.getUniqueId());
             }
-            ResponseCommand responseCommand = callReq(requestCommand);
-
-            String sessionId = AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel());
-            ChannelSessionHolder channelSessionHolder = ChannelSessionHolder.getInstance();
-            Session session = channelSessionHolder.getSession(sessionId);
-            session.sendCommand(responseCommand);
+            ResponseCommand responseCommand = request(requestCommand);
+            if (ObjectUtil.isNotEmpty(responseCommand)) {
+                String sessionId = AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel());
+                ChannelSessionHolder channelSessionHolder = ChannelSessionHolder.getInstance();
+                Session session = channelSessionHolder.getSession(sessionId);
+                session.sendCommand(responseCommand);
+            }
         }
 
         if (header.getType() == BasicMessage.HeaderType.RESP) {
             ResponseCommand responseCommand = GlobalSerializerHolder.deserialize(dataBytes, ResponseCommand.class);
-            callResp(responseCommand);
+            response(responseCommand);
         }
 
     }
@@ -84,13 +99,13 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
      * @param requestCommand 调用命令
      * @return 响应命令
      */
-    protected abstract ResponseCommand callReq(RequestCommand requestCommand);
+    protected abstract ResponseCommand request(RequestCommand requestCommand);
 
     /**
      * 返回
      *
      * @param responseCommand 返回命令
      */
-    protected abstract void callResp(ResponseCommand responseCommand);
+    protected abstract void response(ResponseCommand responseCommand);
 
 }

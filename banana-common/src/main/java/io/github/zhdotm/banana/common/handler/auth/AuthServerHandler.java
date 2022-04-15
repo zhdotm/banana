@@ -3,8 +3,11 @@ package io.github.zhdotm.banana.common.handler.auth;
 import cn.hutool.core.util.ObjectUtil;
 import io.github.zhdotm.banana.common.constant.AttributeKeyEnum;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
+import io.github.zhdotm.banana.common.session.ChannelSession;
+import io.github.zhdotm.banana.common.session.holder.ChannelSessionHolder;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +65,11 @@ public abstract class AuthServerHandler extends SimpleChannelInboundHandler<Basi
 
         log.info("客户端认证成功, 会话[{}]: {}", AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel()), AttributeKeyEnum.CLIENT_IP.getAttributeValue(ctx.channel()));
         ctx.pipeline().remove(AuthServerHandler.class);
+        
+        ChannelSession channelSession = new ChannelSession();
+        channelSession.setChannel((SocketChannel) ctx.channel());
+        channelSession.setSessionId(sessionId);
+        ChannelSessionHolder.getInstance().addSession(channelSession);
     }
 
     @Override

@@ -24,19 +24,19 @@ public class ResponseCommand implements Command, Serializable {
     private String uniqueId;
 
     /**
+     * 是否需要回调
+     */
+    private Boolean isNeedCallback = Boolean.FALSE;
+
+    /**
+     * 是否是异步
+     */
+    private Boolean isAsync = Boolean.FALSE;
+
+    /**
      * 是否无返回值
      */
     private Boolean isVoid;
-
-    /**
-     * 状态
-     */
-    private String code;
-
-    /**
-     * 消息
-     */
-    private String message;
 
     /**
      * 结果

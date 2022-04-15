@@ -61,13 +61,13 @@ public class GlobalSerializerHolder implements SerializerHolder {
     public static <T> byte[] serialize(T obj) {
         GlobalSerializerHolder instance = getInstance();
 
-        return instance.serializer.serialize(obj);
+        return instance.get().serialize(obj);
     }
 
     public static <T> T deserialize(byte[] bytes, Class<T> clazz) {
         GlobalSerializerHolder instance = getInstance();
 
-        return instance.serializer.deserialize(bytes, clazz);
+        return instance.get().deserialize(bytes, clazz);
     }
 
 }

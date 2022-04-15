@@ -1,5 +1,6 @@
 package io.github.zhdotm.banana.common.boot.client;
 
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import io.github.zhdotm.banana.common.codec.BasicMessageDecoder;
@@ -11,9 +12,10 @@ import io.github.zhdotm.banana.common.exception.BananaClientException;
 import io.github.zhdotm.banana.common.handler.beat.HeartBeatClientHandler;
 import io.github.zhdotm.banana.common.handler.exception.ExceptionServerHandler;
 import io.github.zhdotm.banana.common.listener.CloseChannelListener;
-import io.github.zhdotm.banana.common.listener.OpenSessionListener;
 import io.github.zhdotm.banana.common.listener.SendAuthMessageListener;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
+import io.github.zhdotm.banana.common.session.ChannelSession;
+import io.github.zhdotm.banana.common.session.holder.ChannelSessionHolder;
 import io.github.zhdotm.banana.common.util.UniqueIdUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -24,6 +26,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Map;
 
 
 /**
@@ -149,10 +153,12 @@ public abstract class ClientBoot implements BananaClientBoot {
             //添加发送认证消息监听器
             channelFuture.addListener(new SendAuthMessageListener(() -> createAuthenticationMessage(accessToken, sessionId)));
             //添加开启会话监听器
-            channelFuture.addListener(new OpenSessionListener(serverIp, sessionId, accessToken));
             ChannelFuture closeFuture = channelFuture.channel().closeFuture();
             //关闭通道时移除会话
             closeFuture.addListener(new CloseChannelListener(BootTypeEnum.CLIENT));
+            ChannelSession channelSession = createChannelSession(serverIp, (SocketChannel) channelFuture.channel());
+            log.info("添加会话[{}]: {}", sessionId, ChannelSessionHolder.getInstance().addSession(channelSession));
+            ChannelSessionHolder.unlock(sessionId);
             // 阻塞
             closeFuture.sync();
 
@@ -183,6 +189,19 @@ public abstract class ClientBoot implements BananaClientBoot {
                 .newBuilder()
                 .setHeader(headerResp)
                 .build();
+    }
+
+    private ChannelSession createChannelSession(String serverIp, SocketChannel ch) {
+        ChannelSession channelSession = new ChannelSession();
+        Map<String, Object> authInfoMap = MapUtil.newHashMap();
+        authInfoMap.put(AttributeKeyEnum.SERVER_IP.getValue(), serverIp);
+        authInfoMap.put(AttributeKeyEnum.SESSION_ID.getValue(), sessionId);
+        authInfoMap.put(AttributeKeyEnum.ACCESS_TOKEN.getValue(), accessToken);
+        channelSession.setSessionId(sessionId);
+        channelSession.setAuthInfoMap(authInfoMap);
+        channelSession.setChannel(ch);
+
+        return channelSession;
     }
 
 }

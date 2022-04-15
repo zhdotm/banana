@@ -2,11 +2,17 @@ package io.github.zhdotm.banana.common.session.holder;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
+import io.github.zhdotm.banana.common.exception.BananaClientException;
 import io.github.zhdotm.banana.common.session.ChannelSession;
 import io.github.zhdotm.banana.common.session.Session;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * 通道会话持有者
@@ -18,6 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ChannelSessionHolder implements SessionHolder {
 
     private static final ConcurrentHashMap<String, ChannelSession> SESSION_CACHE = MapUtil.newConcurrentHashMap();
+
+    private static final ConcurrentHashMap<String, CountDownLatch> LOCK_CACHE = MapUtil.newConcurrentHashMap();
 
     private static volatile ChannelSessionHolder instance;
 
@@ -46,6 +54,60 @@ public class ChannelSessionHolder implements SessionHolder {
         }
 
         return instance;
+    }
+
+    /**
+     * 根据前缀匹配会话
+     *
+     * @param prefix 前缀
+     * @return 会话列表
+     */
+    public static List<Session> match(String prefix) {
+        List<String> sessionIdList = SESSION_CACHE
+                .keySet()
+                .stream()
+                .filter(sessionId -> sessionId.startsWith(prefix))
+                .collect(Collectors.toList());
+
+        return SESSION_CACHE
+                .values()
+                .stream()
+                .filter(channelSession -> sessionIdList.contains(channelSession.getSessionId()))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 上锁
+     *
+     * @param sessionId 会话ID
+     * @param time      时间
+     * @param unit      单位
+     */
+    @SneakyThrows
+    public static void tryLock(String sessionId, Long time, TimeUnit unit) {
+        CountDownLatch lock = LOCK_CACHE.getOrDefault(sessionId, new CountDownLatch(1));
+        LOCK_CACHE.put(sessionId, lock);
+
+        if (!lock.await(time, unit)) {
+            LOCK_CACHE.remove(sessionId);
+            throw new BananaClientException("等待超时sessionId[" + sessionId + "]: " + time + unit + "");
+        }
+    }
+
+    /**
+     * 解锁
+     *
+     * @param sessionId 会话ID
+     */
+    public static void unlock(String sessionId) {
+        CountDownLatch lock = LOCK_CACHE.get(sessionId);
+
+        if (ObjectUtil.isEmpty(lock)) {
+            throw new BananaClientException("解锁失败sessionId[" + sessionId + "]: 锁不存在");
+        }
+
+        lock.countDown();
+        LOCK_CACHE.remove(sessionId);
     }
 
     @Override
