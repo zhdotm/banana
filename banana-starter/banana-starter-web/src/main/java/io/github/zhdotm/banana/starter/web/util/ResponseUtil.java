@@ -35,6 +35,11 @@ public class ResponseUtil {
     private static final ConcurrentHashMap<String, Object> VOID_CACHE = MapUtil.newConcurrentHashMap();
 
     /**
+     * 异常响应缓存
+     */
+    private static final ConcurrentHashMap<String, Exception> EXCEPTION_CACHE = MapUtil.newConcurrentHashMap();
+
+    /**
      * 设置响应
      *
      * @param uniqueId 唯一ID
@@ -46,8 +51,10 @@ public class ResponseUtil {
     @SneakyThrows
     public static <T> T getResponse(String uniqueId, Long time, TimeUnit unit) {
         tryLock(uniqueId, time, unit);
-
-        return (T) RESPONSE_CACHE.remove(uniqueId);
+        T result = (T) RESPONSE_CACHE.remove(uniqueId);
+        throwExceptionIfExist(uniqueId);
+        
+        return result;
     }
 
     /**
@@ -61,6 +68,20 @@ public class ResponseUtil {
         tryLock(uniqueId, time, unit);
 
         VOID_CACHE.remove(uniqueId);
+        throwExceptionIfExist(uniqueId);
+    }
+
+    @SneakyThrows
+    public static void throwExceptionIfExist(String uniqueId) {
+        Exception exception = getException(uniqueId);
+        if (ObjectUtil.isNotEmpty(exception)) {
+            throw exception;
+        }
+    }
+
+    public static Exception getException(String uniqueId) {
+
+        return EXCEPTION_CACHE.get(uniqueId);
     }
 
     /**
@@ -81,6 +102,16 @@ public class ResponseUtil {
      */
     public static void setVoid(String uniqueId) {
         VOID_CACHE.put(uniqueId, new Object());
+        unlock(uniqueId);
+    }
+
+    /**
+     * 设置异常响应
+     *
+     * @param causeMessage 异常信息
+     */
+    public static void setException(String uniqueId, String causeMessage) {
+        EXCEPTION_CACHE.put(uniqueId, new BananaBizException(uniqueId, causeMessage));
         unlock(uniqueId);
     }
 

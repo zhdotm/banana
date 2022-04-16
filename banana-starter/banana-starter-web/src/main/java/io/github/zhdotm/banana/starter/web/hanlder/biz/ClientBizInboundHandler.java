@@ -53,9 +53,15 @@ public class ClientBizInboundHandler extends BizInboundHandler {
     @Override
     protected void response(ResponseCommand responseCommand) {
         String uniqueId = responseCommand.getUniqueId();
+        Boolean isException = responseCommand.getIsException();
+        String causeMessage = responseCommand.getCauseMessage();
+        if (isException) {
+            ResponseUtil.setException(uniqueId, causeMessage);
+            return;
+        }
+
         Boolean isVoid = responseCommand.getIsVoid();
         Object result = responseCommand.getResult();
-
         if (responseCommand.getIsNeedCallback()) {
             CallbackCommand callbackCommand = responseCommand.getCallbackCommand();
             Class<?> clazz = callbackCommand.getClazz();

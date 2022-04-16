@@ -1,6 +1,5 @@
 package io.github.zhdotm.banana.starter.web.hanlder.biz;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
@@ -9,6 +8,7 @@ import io.github.zhdotm.banana.common.protocol.command.RequestCommand;
 import io.github.zhdotm.banana.common.protocol.command.ResponseCommand;
 import io.netty.channel.ChannelHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.lang.reflect.Method;
 
@@ -61,8 +61,9 @@ public class ServerBizInboundHandler extends BizInboundHandler {
                 responseCommand.setResult(result);
             }
         } catch (Exception e) {
+            log.error("执行方法调用出现异常, uniqueId[{}]: {}", uniqueId, e);
             responseCommand.setIsException(Boolean.TRUE);
-            responseCommand.setCauseMessage(ExceptionUtil.getRootCauseMessage(e));
+            responseCommand.setCauseMessage(ExceptionUtils.getStackTrace(e));
         }
 
         return responseCommand;

@@ -70,17 +70,11 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
                 ChannelSessionHolder channelSessionHolder = ChannelSessionHolder.getInstance();
                 Session session = channelSessionHolder.getSession(sessionId);
                 session.sendCommand(responseCommand);
-                if (responseCommand.getIsException()) {
-                    throw new BananaBizException(header.getUniqueId(), responseCommand.getCauseMessage());
-                }
             }
         }
 
         if (header.getType() == BasicMessage.HeaderType.RESP) {
             ResponseCommand responseCommand = GlobalSerializerHolder.deserialize(dataBytes, ResponseCommand.class);
-            if (responseCommand.getIsException()) {
-                throw new BananaBizException(header.getUniqueId(), responseCommand.getCauseMessage());
-            }
             response(responseCommand);
         }
 
