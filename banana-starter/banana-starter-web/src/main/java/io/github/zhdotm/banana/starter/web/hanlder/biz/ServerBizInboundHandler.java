@@ -4,7 +4,6 @@ import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
-import io.github.zhdotm.banana.common.exception.BananaServerException;
 import io.github.zhdotm.banana.common.handler.biz.BizInboundHandler;
 import io.github.zhdotm.banana.common.protocol.command.RequestCommand;
 import io.github.zhdotm.banana.common.protocol.command.ResponseCommand;
@@ -62,9 +61,8 @@ public class ServerBizInboundHandler extends BizInboundHandler {
                 responseCommand.setResult(result);
             }
         } catch (Exception e) {
-            log.error("服务端业务处理器出现异常: ", e);
-
-            throw new BananaServerException(uniqueId, Boolean.TRUE, Boolean.FALSE, ExceptionUtil.getMessage(e));
+            responseCommand.setIsException(Boolean.TRUE);
+            responseCommand.setCauseMessage(ExceptionUtil.getRootCauseMessage(e));
         }
 
         return responseCommand;

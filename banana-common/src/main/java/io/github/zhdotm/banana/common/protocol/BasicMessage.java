@@ -304,151 +304,6 @@ public final class BasicMessage {
     // @@protoc_insertion_point(enum_scope:BeatType)
   }
 
-  /**
-   * <pre>
-   *状态类型
-   * </pre>
-   *
-   * Protobuf enum {@code StatusType}
-   */
-  public enum StatusType
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <pre>
-     *成功
-     * </pre>
-     *
-     * <code>SUCCESS = 0;</code>
-     */
-    SUCCESS(0),
-    /**
-     * <pre>
-     *失败
-     * </pre>
-     *
-     * <code>FAIL = 1;</code>
-     */
-    FAIL(1),
-    /**
-     * <pre>
-     *异常
-     * </pre>
-     *
-     * <code>EXCEPTION = 3;</code>
-     */
-    EXCEPTION(3),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <pre>
-     *成功
-     * </pre>
-     *
-     * <code>SUCCESS = 0;</code>
-     */
-    public static final int SUCCESS_VALUE = 0;
-    /**
-     * <pre>
-     *失败
-     * </pre>
-     *
-     * <code>FAIL = 1;</code>
-     */
-    public static final int FAIL_VALUE = 1;
-    /**
-     * <pre>
-     *异常
-     * </pre>
-     *
-     * <code>EXCEPTION = 3;</code>
-     */
-    public static final int EXCEPTION_VALUE = 3;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static StatusType valueOf(int value) {
-      return forNumber(value);
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
-    public static StatusType forNumber(int value) {
-      switch (value) {
-        case 0: return SUCCESS;
-        case 1: return FAIL;
-        case 3: return EXCEPTION;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<StatusType>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        StatusType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<StatusType>() {
-            public StatusType findValueByNumber(int number) {
-              return StatusType.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
-      }
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return io.github.zhdotm.banana.common.protocol.BasicMessage.getDescriptor().getEnumTypes().get(2);
-    }
-
-    private static final StatusType[] VALUES = values();
-
-    public static StatusType valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private StatusType(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:StatusType)
-  }
-
   public interface HeaderOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Header)
       com.google.protobuf.MessageOrBuilder {
@@ -1981,29 +1836,10 @@ public final class BasicMessage {
 
     /**
      * <pre>
-     *状态编码
-     * </pre>
-     *
-     * <code>.StatusType status = 1;</code>
-     * @return The enum numeric value on the wire for status.
-     */
-    int getStatusValue();
-    /**
-     * <pre>
-     *状态编码
-     * </pre>
-     *
-     * <code>.StatusType status = 1;</code>
-     * @return The status.
-     */
-    io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType getStatus();
-
-    /**
-     * <pre>
      *内容
      * </pre>
      *
-     * <code>optional bytes data = 2;</code>
+     * <code>optional bytes data = 1;</code>
      * @return Whether the data field is set.
      */
     boolean hasData();
@@ -2012,39 +1848,10 @@ public final class BasicMessage {
      *内容
      * </pre>
      *
-     * <code>optional bytes data = 2;</code>
+     * <code>optional bytes data = 1;</code>
      * @return The data.
      */
     com.google.protobuf.ByteString getData();
-
-    /**
-     * <pre>
-     *成功、失败、异常信息描述
-     * </pre>
-     *
-     * <code>optional string info = 3;</code>
-     * @return Whether the info field is set.
-     */
-    boolean hasInfo();
-    /**
-     * <pre>
-     *成功、失败、异常信息描述
-     * </pre>
-     *
-     * <code>optional string info = 3;</code>
-     * @return The info.
-     */
-    java.lang.String getInfo();
-    /**
-     * <pre>
-     *成功、失败、异常信息描述
-     * </pre>
-     *
-     * <code>optional string info = 3;</code>
-     * @return The bytes for info.
-     */
-    com.google.protobuf.ByteString
-        getInfoBytes();
   }
   /**
    * <pre>
@@ -2063,9 +1870,7 @@ public final class BasicMessage {
       super(builder);
     }
     private Body() {
-      status_ = 0;
       data_ = com.google.protobuf.ByteString.EMPTY;
-      info_ = "";
     }
 
     @java.lang.Override
@@ -2099,21 +1904,9 @@ public final class BasicMessage {
             case 0:
               done = true;
               break;
-            case 8: {
-              int rawValue = input.readEnum();
-
-              status_ = rawValue;
-              break;
-            }
-            case 18: {
+            case 10: {
               bitField0_ |= 0x00000001;
               data_ = input.readBytes();
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000002;
-              info_ = s;
               break;
             }
             default: {
@@ -2149,41 +1942,14 @@ public final class BasicMessage {
     }
 
     private int bitField0_;
-    public static final int STATUS_FIELD_NUMBER = 1;
-    private int status_;
-    /**
-     * <pre>
-     *状态编码
-     * </pre>
-     *
-     * <code>.StatusType status = 1;</code>
-     * @return The enum numeric value on the wire for status.
-     */
-    @java.lang.Override public int getStatusValue() {
-      return status_;
-    }
-    /**
-     * <pre>
-     *状态编码
-     * </pre>
-     *
-     * <code>.StatusType status = 1;</code>
-     * @return The status.
-     */
-    @java.lang.Override public io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType getStatus() {
-      @SuppressWarnings("deprecation")
-      io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType result = io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.valueOf(status_);
-      return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.UNRECOGNIZED : result;
-    }
-
-    public static final int DATA_FIELD_NUMBER = 2;
+    public static final int DATA_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString data_;
     /**
      * <pre>
      *内容
      * </pre>
      *
-     * <code>optional bytes data = 2;</code>
+     * <code>optional bytes data = 1;</code>
      * @return Whether the data field is set.
      */
     @java.lang.Override
@@ -2195,70 +1961,12 @@ public final class BasicMessage {
      *内容
      * </pre>
      *
-     * <code>optional bytes data = 2;</code>
+     * <code>optional bytes data = 1;</code>
      * @return The data.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString getData() {
       return data_;
-    }
-
-    public static final int INFO_FIELD_NUMBER = 3;
-    private volatile java.lang.Object info_;
-    /**
-     * <pre>
-     *成功、失败、异常信息描述
-     * </pre>
-     *
-     * <code>optional string info = 3;</code>
-     * @return Whether the info field is set.
-     */
-    @java.lang.Override
-    public boolean hasInfo() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
-    /**
-     * <pre>
-     *成功、失败、异常信息描述
-     * </pre>
-     *
-     * <code>optional string info = 3;</code>
-     * @return The info.
-     */
-    @java.lang.Override
-    public java.lang.String getInfo() {
-      java.lang.Object ref = info_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        info_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *成功、失败、异常信息描述
-     * </pre>
-     *
-     * <code>optional string info = 3;</code>
-     * @return The bytes for info.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getInfoBytes() {
-      java.lang.Object ref = info_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        info_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2275,14 +1983,8 @@ public final class BasicMessage {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (status_ != io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.SUCCESS.getNumber()) {
-        output.writeEnum(1, status_);
-      }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeBytes(2, data_);
-      }
-      if (((bitField0_ & 0x00000002) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, info_);
+        output.writeBytes(1, data_);
       }
       unknownFields.writeTo(output);
     }
@@ -2293,16 +1995,9 @@ public final class BasicMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (status_ != io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.SUCCESS.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, status_);
-      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, data_);
-      }
-      if (((bitField0_ & 0x00000002) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, info_);
+          .computeBytesSize(1, data_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2319,16 +2014,10 @@ public final class BasicMessage {
       }
       io.github.zhdotm.banana.common.protocol.BasicMessage.Body other = (io.github.zhdotm.banana.common.protocol.BasicMessage.Body) obj;
 
-      if (status_ != other.status_) return false;
       if (hasData() != other.hasData()) return false;
       if (hasData()) {
         if (!getData()
             .equals(other.getData())) return false;
-      }
-      if (hasInfo() != other.hasInfo()) return false;
-      if (hasInfo()) {
-        if (!getInfo()
-            .equals(other.getInfo())) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -2341,15 +2030,9 @@ public final class BasicMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + status_;
       if (hasData()) {
         hash = (37 * hash) + DATA_FIELD_NUMBER;
         hash = (53 * hash) + getData().hashCode();
-      }
-      if (hasInfo()) {
-        hash = (37 * hash) + INFO_FIELD_NUMBER;
-        hash = (53 * hash) + getInfo().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -2488,12 +2171,8 @@ public final class BasicMessage {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        status_ = 0;
-
         data_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
-        info_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -2522,15 +2201,10 @@ public final class BasicMessage {
         io.github.zhdotm.banana.common.protocol.BasicMessage.Body result = new io.github.zhdotm.banana.common.protocol.BasicMessage.Body(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        result.status_ = status_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           to_bitField0_ |= 0x00000001;
         }
         result.data_ = data_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.info_ = info_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2580,16 +2254,8 @@ public final class BasicMessage {
 
       public Builder mergeFrom(io.github.zhdotm.banana.common.protocol.BasicMessage.Body other) {
         if (other == io.github.zhdotm.banana.common.protocol.BasicMessage.Body.getDefaultInstance()) return this;
-        if (other.status_ != 0) {
-          setStatusValue(other.getStatusValue());
-        }
         if (other.hasData()) {
           setData(other.getData());
-        }
-        if (other.hasInfo()) {
-          bitField0_ |= 0x00000002;
-          info_ = other.info_;
-          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2621,87 +2287,13 @@ public final class BasicMessage {
       }
       private int bitField0_;
 
-      private int status_ = 0;
-      /**
-       * <pre>
-       *状态编码
-       * </pre>
-       *
-       * <code>.StatusType status = 1;</code>
-       * @return The enum numeric value on the wire for status.
-       */
-      @java.lang.Override public int getStatusValue() {
-        return status_;
-      }
-      /**
-       * <pre>
-       *状态编码
-       * </pre>
-       *
-       * <code>.StatusType status = 1;</code>
-       * @param value The enum numeric value on the wire for status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatusValue(int value) {
-        
-        status_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *状态编码
-       * </pre>
-       *
-       * <code>.StatusType status = 1;</code>
-       * @return The status.
-       */
-      @java.lang.Override
-      public io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType getStatus() {
-        @SuppressWarnings("deprecation")
-        io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType result = io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.valueOf(status_);
-        return result == null ? io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType.UNRECOGNIZED : result;
-      }
-      /**
-       * <pre>
-       *状态编码
-       * </pre>
-       *
-       * <code>.StatusType status = 1;</code>
-       * @param value The status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatus(io.github.zhdotm.banana.common.protocol.BasicMessage.StatusType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        status_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *状态编码
-       * </pre>
-       *
-       * <code>.StatusType status = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatus() {
-        
-        status_ = 0;
-        onChanged();
-        return this;
-      }
-
       private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        *内容
        * </pre>
        *
-       * <code>optional bytes data = 2;</code>
+       * <code>optional bytes data = 1;</code>
        * @return Whether the data field is set.
        */
       @java.lang.Override
@@ -2713,7 +2305,7 @@ public final class BasicMessage {
        *内容
        * </pre>
        *
-       * <code>optional bytes data = 2;</code>
+       * <code>optional bytes data = 1;</code>
        * @return The data.
        */
       @java.lang.Override
@@ -2725,7 +2317,7 @@ public final class BasicMessage {
        *内容
        * </pre>
        *
-       * <code>optional bytes data = 2;</code>
+       * <code>optional bytes data = 1;</code>
        * @param value The data to set.
        * @return This builder for chaining.
        */
@@ -2743,119 +2335,12 @@ public final class BasicMessage {
        *内容
        * </pre>
        *
-       * <code>optional bytes data = 2;</code>
+       * <code>optional bytes data = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearData() {
         bitField0_ = (bitField0_ & ~0x00000001);
         data_ = getDefaultInstance().getData();
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object info_ = "";
-      /**
-       * <pre>
-       *成功、失败、异常信息描述
-       * </pre>
-       *
-       * <code>optional string info = 3;</code>
-       * @return Whether the info field is set.
-       */
-      public boolean hasInfo() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <pre>
-       *成功、失败、异常信息描述
-       * </pre>
-       *
-       * <code>optional string info = 3;</code>
-       * @return The info.
-       */
-      public java.lang.String getInfo() {
-        java.lang.Object ref = info_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          info_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *成功、失败、异常信息描述
-       * </pre>
-       *
-       * <code>optional string info = 3;</code>
-       * @return The bytes for info.
-       */
-      public com.google.protobuf.ByteString
-          getInfoBytes() {
-        java.lang.Object ref = info_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          info_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *成功、失败、异常信息描述
-       * </pre>
-       *
-       * <code>optional string info = 3;</code>
-       * @param value The info to set.
-       * @return This builder for chaining.
-       */
-      public Builder setInfo(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        info_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *成功、失败、异常信息描述
-       * </pre>
-       *
-       * <code>optional string info = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearInfo() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        info_ = getDefaultInstance().getInfo();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *成功、失败、异常信息描述
-       * </pre>
-       *
-       * <code>optional string info = 3;</code>
-       * @param value The bytes for info to set.
-       * @return This builder for chaining.
-       */
-      public Builder setInfoBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        bitField0_ |= 0x00000002;
-        info_ = value;
         onChanged();
         return this;
       }
@@ -3896,17 +3381,14 @@ public final class BasicMessage {
       "\022\020\n\010uniqueId\030\003 \001(\t\022\034\n\004beat\030\004 \001(\0162\t.BeatT" +
       "ypeH\001\210\001\001\022\030\n\013accessToken\030\005 \001(\tH\002\210\001\001\022\026\n\tse" +
       "ssionId\030\006 \001(\tH\003\210\001\001B\007\n\005_typeB\007\n\005_beatB\016\n\014" +
-      "_accessTokenB\014\n\n_sessionId\"[\n\004Body\022\033\n\006st" +
-      "atus\030\001 \001(\0162\013.StatusType\022\021\n\004data\030\002 \001(\014H\000\210" +
-      "\001\001\022\021\n\004info\030\003 \001(\tH\001\210\001\001B\007\n\005_dataB\007\n\005_info\"" +
-      "E\n\007Message\022\027\n\006header\030\001 \001(\0132\007.Header\022\030\n\004b" +
-      "ody\030\002 \001(\0132\005.BodyH\000\210\001\001B\007\n\005_body*C\n\nHeader" +
-      "Type\022\022\n\016AUTHENTICATION\020\000\022\016\n\nHEART_BEAT\020\001" +
-      "\022\007\n\003REQ\020\002\022\010\n\004RESP\020\003*\036\n\010BeatType\022\010\n\004PING\020" +
-      "\000\022\010\n\004PONG\020\001*2\n\nStatusType\022\013\n\007SUCCESS\020\000\022\010" +
-      "\n\004FAIL\020\001\022\r\n\tEXCEPTION\020\003B7\n\'io.github.zhd" +
-      "otm.banana.common.protocolB\014BasicMessage" +
-      "b\006proto3"
+      "_accessTokenB\014\n\n_sessionId\"\"\n\004Body\022\021\n\004da" +
+      "ta\030\001 \001(\014H\000\210\001\001B\007\n\005_data\"E\n\007Message\022\027\n\006hea" +
+      "der\030\001 \001(\0132\007.Header\022\030\n\004body\030\002 \001(\0132\005.BodyH" +
+      "\000\210\001\001B\007\n\005_body*C\n\nHeaderType\022\022\n\016AUTHENTIC" +
+      "ATION\020\000\022\016\n\nHEART_BEAT\020\001\022\007\n\003REQ\020\002\022\010\n\004RESP" +
+      "\020\003*\036\n\010BeatType\022\010\n\004PING\020\000\022\010\n\004PONG\020\001B7\n\'io" +
+      ".github.zhdotm.banana.common.protocolB\014B" +
+      "asicMessageb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3923,7 +3405,7 @@ public final class BasicMessage {
     internal_static_Body_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Body_descriptor,
-        new java.lang.String[] { "Status", "Data", "Info", "Data", "Info", });
+        new java.lang.String[] { "Data", "Data", });
     internal_static_Message_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_Message_fieldAccessorTable = new

@@ -1,6 +1,6 @@
 package io.github.zhdotm.banana.common.listener;
 
-import io.github.zhdotm.banana.common.exception.BananaClientException;
+import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -30,7 +30,7 @@ public class SendAuthMessageListener implements ChannelFutureListener {
             BasicMessage.Message message = authMessageSupplier.get();
             BasicMessage.Header header = message.getHeader();
             if (header.getType() != BasicMessage.HeaderType.AUTHENTICATION) {
-                throw new BananaClientException("发送认证消息失败: 消息类型有误", Boolean.TRUE);
+                throw new BananaCloseException(header.getUniqueId(), "发送认证消息失败: 消息类型有误");
             }
             future.channel().writeAndFlush(message);
         }

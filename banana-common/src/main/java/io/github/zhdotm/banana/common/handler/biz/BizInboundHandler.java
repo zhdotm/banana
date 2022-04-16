@@ -3,8 +3,7 @@ package io.github.zhdotm.banana.common.handler.biz;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
-import io.github.zhdotm.banana.common.exception.BananaClientException;
-import io.github.zhdotm.banana.common.exception.BananaServerException;
+import io.github.zhdotm.banana.common.exception.BananaBizException;
 import io.github.zhdotm.banana.common.serializer.holder.GlobalSerializerHolder;
 import io.github.zhdotm.banana.common.constant.AttributeKeyEnum;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
@@ -15,6 +14,7 @@ import io.github.zhdotm.banana.common.session.holder.ChannelSessionHolder;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -48,25 +48,12 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
      */
     public abstract Integer getSortId();
 
+    @SneakyThrows
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, BasicMessage.Message msg) throws Exception {
         BasicMessage.Header header = msg.getHeader();
         BasicMessage.Body body = msg.getBody();
-        BasicMessage.StatusType status = body.getStatus();
-        if (status != BasicMessage.StatusType.SUCCESS) {
-            log.error(body.getInfo());
-            if (status == BasicMessage.StatusType.EXCEPTION) {
-                if (header.getType() == BasicMessage.HeaderType.REQ) {
 
-                    throw new BananaServerException(body.getInfo(), Boolean.TRUE);
-                }
-                if (header.getType() == BasicMessage.HeaderType.RESP) {
-
-                    throw new BananaClientException(body.getInfo(), Boolean.TRUE);
-                }
-            }
-            return;
-        }
         byte[] dataBytes = body.getData().toByteArray();
         if (ObjectUtil.isEmpty(dataBytes)) {
             return;
@@ -83,11 +70,17 @@ public abstract class BizInboundHandler extends SimpleChannelInboundHandler<Basi
                 ChannelSessionHolder channelSessionHolder = ChannelSessionHolder.getInstance();
                 Session session = channelSessionHolder.getSession(sessionId);
                 session.sendCommand(responseCommand);
+                if (responseCommand.getIsException()) {
+                    throw new BananaBizException(header.getUniqueId(), responseCommand.getCauseMessage());
+                }
             }
         }
 
         if (header.getType() == BasicMessage.HeaderType.RESP) {
             ResponseCommand responseCommand = GlobalSerializerHolder.deserialize(dataBytes, ResponseCommand.class);
+            if (responseCommand.getIsException()) {
+                throw new BananaBizException(header.getUniqueId(), responseCommand.getCauseMessage());
+            }
             response(responseCommand);
         }
 

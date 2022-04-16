@@ -2,7 +2,8 @@ package io.github.zhdotm.banana.common.session.holder;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
-import io.github.zhdotm.banana.common.exception.BananaClientException;
+import cn.hutool.core.util.StrUtil;
+import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.session.ChannelSession;
 import io.github.zhdotm.banana.common.session.Session;
 import lombok.SneakyThrows;
@@ -90,7 +91,7 @@ public class ChannelSessionHolder implements SessionHolder {
 
         if (!lock.await(time, unit)) {
             LOCK_CACHE.remove(sessionId);
-            throw new BananaClientException("等待超时sessionId[" + sessionId + "]: " + time + unit + "");
+            throw new BananaCloseException("等待超时sessionId[" + sessionId + "]: " + time + unit + "");
         }
     }
 
@@ -103,7 +104,7 @@ public class ChannelSessionHolder implements SessionHolder {
         CountDownLatch lock = LOCK_CACHE.get(sessionId);
 
         if (ObjectUtil.isEmpty(lock)) {
-            throw new BananaClientException("解锁失败sessionId[" + sessionId + "]: 锁不存在");
+            throw new BananaCloseException("解锁失败sessionId[" + sessionId + "]: 锁不存在");
         }
 
         lock.countDown();
@@ -136,6 +137,10 @@ public class ChannelSessionHolder implements SessionHolder {
 
     @Override
     public Boolean removeSession(String sessionId) {
+        if (StrUtil.isBlank(sessionId)) {
+            
+            return Boolean.TRUE;
+        }
         SESSION_CACHE.remove(sessionId);
 
         log.info("移除会话缓存成功: {}", sessionId);

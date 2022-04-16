@@ -2,7 +2,7 @@ package io.github.zhdotm.banana.starter.web.util;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
-import io.github.zhdotm.banana.common.exception.BananaClientException;
+import io.github.zhdotm.banana.common.exception.BananaBizException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -98,7 +98,7 @@ public class ResponseUtil {
 
         if (!lock.await(time, unit)) {
             LOCK_CACHE.remove(uniqueId);
-            throw new BananaClientException("等待超时uniqueId[" + uniqueId + "]: " + time + unit + "");
+            throw new BananaBizException(uniqueId, "等待超时: " + time + unit + "");
         }
     }
 
@@ -111,7 +111,7 @@ public class ResponseUtil {
         CountDownLatch lock = LOCK_CACHE.get(uniqueId);
 
         if (ObjectUtil.isEmpty(lock)) {
-            throw new BananaClientException("解锁失败uniqueId[" + uniqueId + "]: 锁不存在");
+            throw new BananaBizException(uniqueId, "解锁失败: 锁不存在");
         }
 
         lock.countDown();

@@ -22,8 +22,7 @@ public interface Session {
      * 关闭会话
      */
     void close();
-
-
+    
     /**
      * 发送命令
      *
@@ -31,22 +30,6 @@ public interface Session {
      * @param <T>     类型
      */
     <T extends Command> void sendCommand(T command);
-
-    /**
-     * 失败
-     *
-     * @param uniqueId 唯一ID
-     * @param info     信息
-     */
-    void sendFail(String uniqueId, String info);
-
-    /**
-     * 异常
-     *
-     * @param uniqueId 唯一ID
-     * @param info     信息
-     */
-    void sendException(String uniqueId, String info);
 
     /**
      * 发送消息

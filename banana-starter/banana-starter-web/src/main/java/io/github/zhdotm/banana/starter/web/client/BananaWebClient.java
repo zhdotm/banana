@@ -5,7 +5,7 @@ import cn.hutool.extra.spring.SpringUtil;
 import io.github.zhdotm.banana.common.boot.client.ClientBoot;
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
 import io.github.zhdotm.banana.common.creator.AccessTokenCreator;
-import io.github.zhdotm.banana.common.exception.BananaClientException;
+import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.handler.biz.BizInboundHandler;
 
 import java.util.*;
@@ -34,7 +34,7 @@ public class BananaWebClient extends ClientBoot {
     public String createAccessToken(Map<String, Object> authInfoMap) {
         AccessTokenCreator accessTokenCreator = SpringUtil.getBean(AccessTokenCreator.class);
         if (ObjectUtil.isEmpty(accessTokenCreator)) {
-            throw new BananaClientException("获取accessToken生成器失败: accessTokenCreator不存在");
+            throw new BananaCloseException("获取accessToken生成器失败: accessTokenCreator不存在");
         }
 
         return accessTokenCreator.create(authInfoMap);

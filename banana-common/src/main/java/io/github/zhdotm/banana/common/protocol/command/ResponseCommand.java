@@ -24,6 +24,11 @@ public class ResponseCommand implements Command, Serializable {
     private String uniqueId;
 
     /**
+     * 是否出现异常
+     */
+    private Boolean isException = Boolean.FALSE;
+
+    /**
      * 是否需要回调
      */
     private Boolean isNeedCallback = Boolean.FALSE;
@@ -42,6 +47,11 @@ public class ResponseCommand implements Command, Serializable {
      * 结果
      */
     private Object result;
+
+    /**
+     * 异常信息
+     */
+    private String causeMessage;
 
     /**
      * 回调命令

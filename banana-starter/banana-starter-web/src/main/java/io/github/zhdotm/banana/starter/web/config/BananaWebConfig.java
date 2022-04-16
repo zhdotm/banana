@@ -3,7 +3,7 @@ package io.github.zhdotm.banana.starter.web.config;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import io.github.zhdotm.banana.common.creator.AccessTokenCreator;
-import io.github.zhdotm.banana.common.exception.BananaServerException;
+import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.handler.auth.AuthServerHandler;
 import io.github.zhdotm.banana.common.parser.AccessTokenParser;
 import io.github.zhdotm.banana.starter.web.hanlder.auth.DefaultAuthServerHandler;
@@ -53,7 +53,7 @@ public class BananaWebConfig {
             @Override
             public Map<String, Object> parse(String accessToken) {
                 if (!JSONUtil.isJson(accessToken)) {
-                    throw new BananaServerException("解析accessToken失败: 非JSON", Boolean.TRUE);
+                    throw new BananaCloseException("解析accessToken失败: 非JSON");
                 }
 
                 return JSONUtil.parseObj(accessToken);

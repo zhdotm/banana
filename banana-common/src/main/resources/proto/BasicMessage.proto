@@ -29,19 +29,6 @@ enum BeatType {
   PONG = 1;
 }
 
-//状态类型
-enum StatusType {
-
-  //成功
-  SUCCESS = 0;
-
-  //失败
-  FAIL = 1;
-
-  //异常
-  EXCEPTION = 3;
-}
-
 //消息头
 message Header {
 
@@ -66,15 +53,8 @@ message Header {
 
 //消息体
 message Body {
-
-  //状态编码
-  StatusType status = 1;
-
   //内容
-  optional bytes data = 2;
-
-  //成功、失败、异常信息描述
-  optional string info = 3;
+  optional bytes data = 1;
 }
 
 message Message {

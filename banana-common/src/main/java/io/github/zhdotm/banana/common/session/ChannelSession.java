@@ -57,7 +57,6 @@ public class ChannelSession implements Session {
 
         BasicMessage.Body body = BasicMessage.Body
                 .newBuilder()
-                .setStatus(BasicMessage.StatusType.SUCCESS)
                 .setData(ByteString.copyFrom(GlobalSerializerHolder.serialize(command)))
                 .build();
 
@@ -72,46 +71,9 @@ public class ChannelSession implements Session {
     }
 
     @Override
-    public void sendFail(String uniqueId, String info) {
-
-        sendInfo(uniqueId, BasicMessage.StatusType.FAIL, info);
-    }
-
-    @Override
-    public void sendException(String uniqueId, String info) {
-
-        sendInfo(uniqueId, BasicMessage.StatusType.EXCEPTION, info);
-    }
-
-    @Override
     public void sendMessage(BasicMessage.Message message) {
 
         channel.writeAndFlush(message);
-    }
-
-    private void sendInfo(String uniqueId, BasicMessage.StatusType statusType, String info) {
-        BasicMessage.Header header = BasicMessage
-                .Header
-                .newBuilder()
-                .setVersion(ProtocolVersionEnum.ONE.getValue())
-                .setType(BasicMessage.HeaderType.RESP)
-                .setUniqueId(uniqueId)
-                .build();
-
-        BasicMessage.Body body = BasicMessage.Body
-                .newBuilder()
-                .setStatus(statusType)
-                .setInfo(info)
-                .build();
-
-        BasicMessage.Message message = BasicMessage
-                .Message
-                .newBuilder()
-                .setHeader(header)
-                .setBody(body)
-                .build();
-
-        sendMessage(message);
     }
 
 }

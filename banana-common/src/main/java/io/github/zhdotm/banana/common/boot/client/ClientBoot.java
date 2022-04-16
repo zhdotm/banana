@@ -8,9 +8,9 @@ import io.github.zhdotm.banana.common.codec.BasicMessageEncoder;
 import io.github.zhdotm.banana.common.constant.AttributeKeyEnum;
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
 import io.github.zhdotm.banana.common.constant.ProtocolVersionEnum;
-import io.github.zhdotm.banana.common.exception.BananaClientException;
+import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.handler.beat.HeartBeatClientHandler;
-import io.github.zhdotm.banana.common.handler.exception.ExceptionServerHandler;
+import io.github.zhdotm.banana.common.handler.exception.BananaExceptionHandler;
 import io.github.zhdotm.banana.common.listener.CloseChannelListener;
 import io.github.zhdotm.banana.common.listener.SendAuthMessageListener;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
@@ -104,10 +104,10 @@ public abstract class ClientBoot implements BananaClientBoot {
         bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
         bootstrap.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
         if (StrUtil.isBlank(host) || ObjectUtil.isEmpty(port)) {
-            throw new BananaClientException("初始化客户端引导失败: 服务器ip地址和端口不能为空", Boolean.TRUE);
+            throw new BananaCloseException("初始化客户端引导失败: 服务器ip地址和端口不能为空");
         }
         if (StrUtil.isBlank(sessionId)) {
-            throw new BananaClientException("初始化客户端引导失败: sessionId不能为空", Boolean.TRUE);
+            throw new BananaCloseException("初始化客户端引导失败: sessionId不能为空");
         }
         bootstrap.remoteAddress(host, port);
 
@@ -130,7 +130,7 @@ public abstract class ClientBoot implements BananaClientBoot {
                 //添加自定义逻辑处理器
                 addBizHandlers(ch);
                 //添加异常处理器
-                ch.pipeline().addLast(new ExceptionServerHandler());
+                ch.pipeline().addLast(new BananaExceptionHandler());
 
             }
         });
