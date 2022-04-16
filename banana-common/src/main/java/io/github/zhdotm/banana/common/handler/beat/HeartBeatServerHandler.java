@@ -41,7 +41,7 @@ public class HeartBeatServerHandler extends IdleStateHandler {
         BasicMessage.Header header = message.getHeader();
         //如果是心跳包
         if (header.getType() == BasicMessage.HeaderType.HEART_BEAT) {
-            log.info(" 收到客户端[{}], 会话[{}], 心跳请求[{}]: {}", AttributeKeyEnum.CLIENT_IP.getAttributeValue(ctx.channel()), AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel()), header.getUniqueId(), header.getBeat());
+            log.info("收到客户端[{}], 会话[{}], 心跳请求[{}]: {}", AttributeKeyEnum.CLIENT_IP.getAttributeValue(ctx.channel()), AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel()), header.getUniqueId(), header.getBeat());
             pong(ctx, header.getUniqueId());
         }
 

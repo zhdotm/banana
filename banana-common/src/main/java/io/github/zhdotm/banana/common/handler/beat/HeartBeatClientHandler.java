@@ -70,7 +70,7 @@ public class HeartBeatClientHandler extends IdleStateHandler {
         BasicMessage.Header header = message.getHeader();
         BasicMessage.HeaderType headerType = header.getType();
         if (headerType == BasicMessage.HeaderType.HEART_BEAT) {
-            log.info(" 收到服务端[{}], 会话[{}], 心跳响应[{}]: {}", AttributeKeyEnum.SERVER_IP.getAttributeValue(ctx.channel()), AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel()), header.getUniqueId(), header.getBeat());
+            log.info("收到服务端[{}], 会话[{}], 心跳响应[{}]: {}", AttributeKeyEnum.SERVER_IP.getAttributeValue(ctx.channel()), AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel()), header.getUniqueId(), header.getBeat());
         }
 
         super.channelRead(ctx, msg);

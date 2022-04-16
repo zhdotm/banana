@@ -36,7 +36,7 @@ public class RequestCommand implements Command, Serializable {
     /**
      * 类名
      */
-    private String clazzName;
+    private Class<?> clazz;
 
     /**
      * 方法名

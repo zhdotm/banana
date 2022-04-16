@@ -41,7 +41,7 @@ public class ServerBizInboundHandler extends BizInboundHandler {
     @Override
     protected ResponseCommand request(RequestCommand requestCommand) {
         String uniqueId = requestCommand.getUniqueId();
-        String clazzName = requestCommand.getClazzName();
+        Class<?> clazz = requestCommand.getClazz();
         String methodName = requestCommand.getMethodName();
 
         ResponseCommand responseCommand = new ResponseCommand();
@@ -51,7 +51,6 @@ public class ServerBizInboundHandler extends BizInboundHandler {
         responseCommand.setCallbackCommand(requestCommand.getCallbackCommand());
         try {
             Class<?>[] parameterTypes = requestCommand.getParameterTypes();
-            Class<?> clazz = Class.forName(clazzName);
             Object bean = SpringUtil.getBean(clazz);
             Method method = ReflectUtil.getMethod(clazz, methodName, parameterTypes);
             Object result = method.invoke(bean, requestCommand.getParameters());

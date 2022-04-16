@@ -61,7 +61,6 @@ public class BananaProcessor implements InstantiationAwareBeanPostProcessor {
                 String serverUrl = bananaRemoteApi.serverUrl();
                 Long timeout = bananaRemoteApi.timeout();
                 Class<?> fieldTypeClazz = field.getType();
-                String remoteClazzName = fieldTypeClazz.getName();
 
                 Object fieldValue = Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[]{fieldTypeClazz}, new InvocationHandler() {
                     @Override
@@ -94,7 +93,7 @@ public class BananaProcessor implements InstantiationAwareBeanPostProcessor {
                         String uniqueId = UniqueIdUtil.getNextId();
                         RequestCommand requestCommand = new RequestCommand();
                         requestCommand.setUniqueId(uniqueId);
-                        requestCommand.setClazzName(remoteClazzName);
+                        requestCommand.setClazz(fieldTypeClazz);
                         requestCommand.setMethodName(method.getName());
                         requestCommand.setParameterTypes(method.getParameterTypes());
                         requestCommand.setParameters(args);

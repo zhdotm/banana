@@ -9,7 +9,7 @@ import lombok.Setter;
  * @author zhihao.mao
  */
 
-public class BananaClientException extends RuntimeException {
+public class BananaClientException extends BananaException {
 
     @Getter
     @Setter
