@@ -10,9 +10,9 @@ import cn.hutool.core.util.IdUtil;
 
 public class UniqueIdUtil {
 
-    public static String getNextId() {
-        
-        return IdUtil.getSnowflake().nextIdStr();
+    public static String getNextId(String prefix) {
+
+        return prefix + ":" + IdUtil.getSnowflake().nextIdStr();
     }
 
 }

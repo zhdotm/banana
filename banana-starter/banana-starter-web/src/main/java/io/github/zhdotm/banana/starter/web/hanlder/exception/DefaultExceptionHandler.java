@@ -1,5 +1,7 @@
-package io.github.zhdotm.banana.common.handler.exception;
+package io.github.zhdotm.banana.starter.web.hanlder.exception;
 
+import io.github.zhdotm.banana.common.handler.exception.BasicExceptionHandler;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,11 +13,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-public class BananaExceptionHandler extends BasicExceptionHandler {
+@ChannelHandler.Sharable
+public class DefaultExceptionHandler extends BasicExceptionHandler {
 
     @Override
     public String getName() {
-        
+
         return "defaultExceptionHandler";
     }
 

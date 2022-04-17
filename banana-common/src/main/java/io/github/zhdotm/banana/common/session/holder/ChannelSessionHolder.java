@@ -3,16 +3,12 @@ package io.github.zhdotm.banana.common.session.holder;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.session.ChannelSession;
 import io.github.zhdotm.banana.common.session.Session;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -25,8 +21,6 @@ import java.util.stream.Collectors;
 public class ChannelSessionHolder implements SessionHolder {
 
     private static final ConcurrentHashMap<String, ChannelSession> SESSION_CACHE = MapUtil.newConcurrentHashMap();
-
-    private static final ConcurrentHashMap<String, CountDownLatch> LOCK_CACHE = MapUtil.newConcurrentHashMap();
 
     private static volatile ChannelSessionHolder instance;
 
@@ -77,40 +71,6 @@ public class ChannelSessionHolder implements SessionHolder {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * 上锁
-     *
-     * @param sessionId 会话ID
-     * @param time      时间
-     * @param unit      单位
-     */
-    @SneakyThrows
-    public static void tryLock(String sessionId, Long time, TimeUnit unit) {
-        CountDownLatch lock = LOCK_CACHE.getOrDefault(sessionId, new CountDownLatch(1));
-        LOCK_CACHE.put(sessionId, lock);
-
-        if (!lock.await(time, unit)) {
-            LOCK_CACHE.remove(sessionId);
-            throw new BananaCloseException("等待超时sessionId[" + sessionId + "]: " + time + unit + "");
-        }
-    }
-
-    /**
-     * 解锁
-     *
-     * @param sessionId 会话ID
-     */
-    public static void unlock(String sessionId) {
-        CountDownLatch lock = LOCK_CACHE.get(sessionId);
-
-        if (ObjectUtil.isEmpty(lock)) {
-            throw new BananaCloseException("解锁失败sessionId[" + sessionId + "]: 锁不存在");
-        }
-
-        lock.countDown();
-        LOCK_CACHE.remove(sessionId);
-    }
-
     @Override
     public Boolean addSession(Session session) {
         String sessionId = session.getSessionId();
@@ -138,7 +98,7 @@ public class ChannelSessionHolder implements SessionHolder {
     @Override
     public Boolean removeSession(String sessionId) {
         if (StrUtil.isBlank(sessionId)) {
-            
+
             return Boolean.TRUE;
         }
         SESSION_CACHE.remove(sessionId);

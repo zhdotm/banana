@@ -10,12 +10,12 @@ import io.github.zhdotm.banana.common.constant.BootTypeEnum;
 import io.github.zhdotm.banana.common.constant.ProtocolVersionEnum;
 import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.handler.beat.HeartBeatClientHandler;
-import io.github.zhdotm.banana.common.handler.exception.BananaExceptionHandler;
 import io.github.zhdotm.banana.common.listener.CloseChannelListener;
 import io.github.zhdotm.banana.common.listener.SendAuthMessageListener;
 import io.github.zhdotm.banana.common.protocol.BasicMessage;
 import io.github.zhdotm.banana.common.session.ChannelSession;
 import io.github.zhdotm.banana.common.session.holder.ChannelSessionHolder;
+import io.github.zhdotm.banana.common.util.SessionUtil;
 import io.github.zhdotm.banana.common.util.UniqueIdUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -90,6 +90,11 @@ public abstract class ClientBoot implements BananaClientBoot {
      */
     private String sessionId;
 
+    /**
+     * 是否需要解锁会话锁
+     */
+    private Boolean isNeedUnlockSessionLock = Boolean.FALSE;
+
     @Override
     public BootTypeEnum getBootType() {
 
@@ -158,7 +163,9 @@ public abstract class ClientBoot implements BananaClientBoot {
             closeFuture.addListener(new CloseChannelListener(BootTypeEnum.CLIENT));
             ChannelSession channelSession = createChannelSession(serverIp, (SocketChannel) channelFuture.channel());
             log.info("添加会话[{}]: {}", sessionId, ChannelSessionHolder.getInstance().addSession(channelSession));
-            ChannelSessionHolder.unlock(sessionId);
+            if (isNeedUnlockSessionLock) {
+                SessionUtil.unlock(sessionId);
+            }
             // 阻塞
             closeFuture.sync();
 
@@ -179,7 +186,7 @@ public abstract class ClientBoot implements BananaClientBoot {
                 .newBuilder()
                 .setVersion(ProtocolVersionEnum.ONE.getValue())
                 .setType(BasicMessage.HeaderType.AUTHENTICATION)
-                .setUniqueId(UniqueIdUtil.getNextId())
+                .setUniqueId(UniqueIdUtil.getNextId("auth"))
                 .setAccessToken(accessToken)
                 .setSessionId(sessionId)
                 .build();

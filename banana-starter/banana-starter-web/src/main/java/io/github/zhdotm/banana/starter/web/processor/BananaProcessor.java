@@ -9,12 +9,13 @@ import io.github.zhdotm.banana.common.protocol.command.CallbackCommand;
 import io.github.zhdotm.banana.common.protocol.command.RequestCommand;
 import io.github.zhdotm.banana.common.session.Session;
 import io.github.zhdotm.banana.common.session.holder.ChannelSessionHolder;
+import io.github.zhdotm.banana.common.util.SessionUtil;
 import io.github.zhdotm.banana.common.util.UniqueIdUtil;
 import io.github.zhdotm.banana.annotation.BananaCallback;
 import io.github.zhdotm.banana.annotation.BananaRemoteApi;
 import io.github.zhdotm.banana.starter.web.client.BananaWebClient;
 import io.github.zhdotm.banana.starter.web.config.properties.BananaWebConfigProperties;
-import io.github.zhdotm.banana.starter.web.util.ResponseUtil;
+import io.github.zhdotm.banana.common.util.ResponseUtil;
 import lombok.SneakyThrows;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,55 +79,33 @@ public class BananaProcessor implements InstantiationAwareBeanPostProcessor {
                                     String accessToken = bananaWebClient.createAccessToken(map);
                                     String host = serverUrl.split(":")[0];
                                     Integer port = Integer.parseInt(serverUrl.split(":")[1]);
+                                    bananaWebClient.setIsNeedUnlockSessionLock(Boolean.TRUE);
                                     ThreadUtil.execAsync(new Runnable() {
                                         @Override
                                         public void run() {
                                             bananaWebClient.connect(host, port, accessToken, sessionId);
                                         }
                                     });
-                                    ChannelSessionHolder.tryLock(sessionId, bananaWebConfigProperties.getCreateSessionTimeout(), TimeUnit.SECONDS);
+                                    SessionUtil.tryLock(sessionId, bananaWebConfigProperties.getCreateSessionTimeout(), TimeUnit.SECONDS);
                                     session = ChannelSessionHolder.getInstance().getSession(sessionId);
                                 }
                             }
                         }
 
-                        String uniqueId = UniqueIdUtil.getNextId();
-                        RequestCommand requestCommand = new RequestCommand();
-                        requestCommand.setUniqueId(uniqueId);
-                        requestCommand.setClazz(fieldTypeClazz);
-                        requestCommand.setMethodName(method.getName());
-                        requestCommand.setParameterTypes(method.getParameterTypes());
-                        requestCommand.setParameters(args);
-
-                        //回调
-                        BananaCallback bananaCallback = method.getDeclaredAnnotation(BananaCallback.class);
-                        if (ObjectUtil.isNotEmpty(bananaCallback)) {
-                            Class<?> callbackClazz = bananaCallback.callbackClazz();
-                            CallbackCommand callbackCommand = new CallbackCommand();
-                            callbackCommand.setUniqueId(uniqueId);
-                            callbackCommand.setClazz(callbackClazz);
-                            callbackCommand.setMethodName(bananaCallback.methodName());
-                            callbackCommand.setParameterClazz(method.getReturnType());
-                            requestCommand.setIsNeedCallback(Boolean.TRUE);
-                            requestCommand.setCallbackCommand(callbackCommand);
-                        }
-
-                        //异步
-                        Boolean isAsync = ObjectUtil.isNotEmpty(method.getDeclaredAnnotation(BananaAsync.class));
-                        requestCommand.setIsAsync(isAsync);
+                        RequestCommand requestCommand = createRequestCommand(sessionId, fieldTypeClazz, method, args);
 
                         session.sendCommand(requestCommand);
 
-                        if (isAsync) {
+                        if (requestCommand.getIsAsync()) {
                             return null;
                         }
 
                         if (method.getReturnType().equals(Void.TYPE)) {
-                            ResponseUtil.getVoid(uniqueId, timeout, TimeUnit.SECONDS);
+                            ResponseUtil.getVoid(requestCommand.getUniqueId(), timeout, TimeUnit.SECONDS);
                             return null;
                         }
 
-                        return ResponseUtil.getResponse(uniqueId, timeout, TimeUnit.SECONDS);
+                        return ResponseUtil.getResponse(requestCommand.getUniqueId(), timeout, TimeUnit.SECONDS);
                     }
                 });
                 field.set(bean, fieldValue);
@@ -134,6 +113,35 @@ public class BananaProcessor implements InstantiationAwareBeanPostProcessor {
         });
 
         return bean;
+    }
+
+    private RequestCommand createRequestCommand(String sessionId, Class<?> fieldTypeClazz, Method method, Object[] args) {
+        String uniqueId = UniqueIdUtil.getNextId(sessionId);
+        RequestCommand requestCommand = new RequestCommand();
+        requestCommand.setUniqueId(uniqueId);
+        requestCommand.setClazz(fieldTypeClazz);
+        requestCommand.setMethodName(method.getName());
+        requestCommand.setParameterTypes(method.getParameterTypes());
+        requestCommand.setParameters(args);
+
+        //回调
+        BananaCallback bananaCallback = method.getDeclaredAnnotation(BananaCallback.class);
+        if (ObjectUtil.isNotEmpty(bananaCallback)) {
+            Class<?> callbackClazz = bananaCallback.callbackClazz();
+            CallbackCommand callbackCommand = new CallbackCommand();
+            callbackCommand.setUniqueId(uniqueId);
+            callbackCommand.setClazz(callbackClazz);
+            callbackCommand.setMethodName(bananaCallback.methodName());
+            callbackCommand.setParameterClazz(method.getReturnType());
+            requestCommand.setIsNeedCallback(Boolean.TRUE);
+            requestCommand.setCallbackCommand(callbackCommand);
+        }
+
+        //异步
+        Boolean isAsync = ObjectUtil.isNotEmpty(method.getDeclaredAnnotation(BananaAsync.class));
+        requestCommand.setIsAsync(isAsync);
+
+        return requestCommand;
     }
 
 }

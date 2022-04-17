@@ -1,13 +1,12 @@
 package io.github.zhdotm.banana.starter.web.hanlder.biz;
 
-import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
 import io.github.zhdotm.banana.common.handler.biz.BizInboundHandler;
 import io.github.zhdotm.banana.common.protocol.command.CallbackCommand;
 import io.github.zhdotm.banana.common.protocol.command.RequestCommand;
 import io.github.zhdotm.banana.common.protocol.command.ResponseCommand;
-import io.github.zhdotm.banana.starter.web.util.ResponseUtil;
+import io.github.zhdotm.banana.common.util.ResponseUtil;
 import io.netty.channel.ChannelHandler;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

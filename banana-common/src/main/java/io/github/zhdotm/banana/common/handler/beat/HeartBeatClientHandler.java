@@ -91,7 +91,7 @@ public class HeartBeatClientHandler extends IdleStateHandler {
 
     private void ping(ChannelHandlerContext ctx) {
 
-        ping(ctx, UniqueIdUtil.getNextId());
+        ping(ctx, UniqueIdUtil.getNextId("heartbeat"));
     }
 
     private void ping(ChannelHandlerContext ctx, String uniqueId) {

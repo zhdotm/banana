@@ -1,4 +1,4 @@
-package io.github.zhdotm.banana.starter.web.util;
+package io.github.zhdotm.banana.common.util;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -53,7 +53,7 @@ public class ResponseUtil {
         tryLock(uniqueId, time, unit);
         T result = (T) RESPONSE_CACHE.remove(uniqueId);
         throwExceptionIfExist(uniqueId);
-        
+
         return result;
     }
 
