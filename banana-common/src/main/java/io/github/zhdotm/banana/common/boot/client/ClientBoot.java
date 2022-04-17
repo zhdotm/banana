@@ -130,7 +130,7 @@ public abstract class ClientBoot implements BananaClientBoot {
                 //添加自定义逻辑处理器
                 addBizHandlers(ch);
                 //添加异常处理器
-                ch.pipeline().addLast(new BananaExceptionHandler());
+                addExceptionHandler(ch);
 
             }
         });

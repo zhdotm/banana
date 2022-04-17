@@ -14,6 +14,18 @@ import lombok.extern.slf4j.Slf4j;
 public class BananaExceptionHandler extends BasicExceptionHandler {
 
     @Override
+    public String getName() {
+        
+        return "defaultExceptionHandler";
+    }
+
+    @Override
+    public Integer getSortId() {
+
+        return Integer.MAX_VALUE;
+    }
+
+    @Override
     public void doExceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 
     }

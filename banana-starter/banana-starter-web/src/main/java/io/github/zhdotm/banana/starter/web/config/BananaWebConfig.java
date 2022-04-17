@@ -5,6 +5,8 @@ import cn.hutool.json.JSONUtil;
 import io.github.zhdotm.banana.common.creator.AccessTokenCreator;
 import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.handler.auth.AuthServerHandler;
+import io.github.zhdotm.banana.common.handler.exception.BananaExceptionHandler;
+import io.github.zhdotm.banana.common.handler.exception.BasicExceptionHandler;
 import io.github.zhdotm.banana.common.parser.AccessTokenParser;
 import io.github.zhdotm.banana.starter.web.hanlder.auth.DefaultAuthServerHandler;
 import io.github.zhdotm.banana.starter.web.hanlder.biz.ClientBizInboundHandler;
@@ -65,6 +67,13 @@ public class BananaWebConfig {
     public AuthServerHandler authServerHandler(AccessTokenParser accessTokenParser) {
 
         return new DefaultAuthServerHandler(accessTokenParser);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(BasicExceptionHandler.class)
+    public BasicExceptionHandler exceptionHandler(){
+
+        return new BananaExceptionHandler();
     }
 
     @Bean

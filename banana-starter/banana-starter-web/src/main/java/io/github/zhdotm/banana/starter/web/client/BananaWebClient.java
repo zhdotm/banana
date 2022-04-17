@@ -7,6 +7,7 @@ import io.github.zhdotm.banana.common.constant.BootTypeEnum;
 import io.github.zhdotm.banana.common.creator.AccessTokenCreator;
 import io.github.zhdotm.banana.common.exception.BananaCloseException;
 import io.github.zhdotm.banana.common.handler.biz.BizInboundHandler;
+import io.github.zhdotm.banana.common.handler.exception.BasicExceptionHandler;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +29,12 @@ public class BananaWebClient extends ClientBoot {
                 .filter(bizInboundHandler -> BootTypeEnum.CLIENT == bizInboundHandler.getBootType())
                 .sorted(Comparator.comparingInt(BizInboundHandler::getSortId))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public BasicExceptionHandler getExceptionHandler() {
+
+        return SpringUtil.getBean(BasicExceptionHandler.class);
     }
 
     @Override

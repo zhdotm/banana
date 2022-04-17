@@ -61,9 +61,9 @@ public class ServerBizInboundHandler extends BizInboundHandler {
                 responseCommand.setResult(result);
             }
         } catch (Exception e) {
-            log.error("执行方法调用出现异常, uniqueId[{}]: {}", uniqueId, e);
+            log.error("执行方法调用出现异常, uniqueId[{}]: ", uniqueId, e);
             responseCommand.setIsException(Boolean.TRUE);
-            responseCommand.setCauseMessage(ExceptionUtils.getStackTrace(e));
+            responseCommand.setCauseMessage(ExceptionUtils.getRootCauseMessage(e));
         }
 
         return responseCommand;

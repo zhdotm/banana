@@ -2,6 +2,7 @@ package io.github.zhdotm.banana.common.boot;
 
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
 import io.github.zhdotm.banana.common.handler.biz.BizInboundHandler;
+import io.github.zhdotm.banana.common.handler.exception.BasicExceptionHandler;
 import io.netty.channel.socket.SocketChannel;
 
 import java.util.List;
@@ -35,6 +36,13 @@ public interface BananaBoot {
     List<BizInboundHandler> getBizHandlers();
 
     /**
+     * 获取异常处理器
+     *
+     * @return 异常处理器
+     */
+    BasicExceptionHandler getExceptionHandler();
+
+    /**
      * 添加业务
      *
      * @param ch 通道
@@ -45,6 +53,16 @@ public interface BananaBoot {
             String name = bizInboundHandler.getName();
             ch.pipeline().addLast(name, bizInboundHandler);
         });
+    }
+
+    /**
+     * 添加异常处理器
+     *
+     * @param ch 通道
+     */
+    default void addExceptionHandler(SocketChannel ch) {
+        BasicExceptionHandler exceptionHandler = getExceptionHandler();
+        ch.pipeline().addLast(exceptionHandler.getName(), exceptionHandler);
     }
 
 }

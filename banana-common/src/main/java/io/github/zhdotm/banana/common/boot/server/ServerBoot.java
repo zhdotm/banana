@@ -1,7 +1,6 @@
 package io.github.zhdotm.banana.common.boot.server;
 
 import io.github.zhdotm.banana.common.constant.BootTypeEnum;
-import io.github.zhdotm.banana.common.handler.exception.BananaExceptionHandler;
 import io.github.zhdotm.banana.common.codec.BasicMessageDecoder;
 import io.github.zhdotm.banana.common.codec.BasicMessageEncoder;
 import io.github.zhdotm.banana.common.constant.AttributeKeyEnum;
@@ -101,7 +100,7 @@ public abstract class ServerBoot implements BananaServerBoot {
                 //添加自定义逻辑处理器
                 addBizHandlers(ch);
                 //添加异常处理器
-                ch.pipeline().addLast(new BananaExceptionHandler());
+                addExceptionHandler(ch);
                 //监听通道关闭
                 ChannelFuture channelFuture = ch.closeFuture();
                 channelFuture.addListener(new CloseChannelListener(BootTypeEnum.SERVER));

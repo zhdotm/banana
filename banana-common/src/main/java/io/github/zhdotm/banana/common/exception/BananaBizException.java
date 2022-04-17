@@ -17,7 +17,7 @@ public class BananaBizException extends RuntimeException {
     private String uniqueId;
 
     public BananaBizException(String uniqueId, String message) {
-        super("uniqueId[" + uniqueId + "]" + message);
+        super("uniqueId[" + uniqueId + "], " + message);
         this.uniqueId = uniqueId;
     }
 

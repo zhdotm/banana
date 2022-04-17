@@ -17,7 +17,7 @@ public class BananaCloseException extends RuntimeException {
     private String uniqueId;
 
     public BananaCloseException(String uniqueId, String message) {
-        super("uniqueId[" + uniqueId + "]" + message);
+        super("uniqueId[" + uniqueId + "], " + message);
         this.uniqueId = uniqueId;
     }
 

@@ -13,6 +13,20 @@ import lombok.SneakyThrows;
 
 public abstract class BasicExceptionHandler extends ChannelInboundHandlerAdapter {
 
+    /**
+     * 获取异常处理器名称
+     *
+     * @return 业务处理器名称
+     */
+    public abstract String getName();
+
+    /**
+     * 获取排序ID
+     *
+     * @return 排序ID
+     */
+    public abstract Integer getSortId();
+
     @SneakyThrows
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
