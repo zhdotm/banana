@@ -2,6 +2,6 @@ banana:
   port: 8888
 spring:
   application:
-    name: aapp
+    name: aApp
 server:
   port: 7777
