@@ -34,11 +34,13 @@ public class HeartBeatClientHandler extends IdleStateHandler {
 
     @Override
     protected void channelIdle(ChannelHandlerContext ctx, IdleStateEvent evt) throws Exception {
+        String sessionId = AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel());
+        String serverIp = AttributeKeyEnum.SERVER_IP.getAttributeValue(ctx.channel());
+        log.warn("客户端收到空闲事件, 会话[{}]: {}", sessionId, evt);
         //2次空闲事件就关闭上下文
         if (!evt.isFirst()) {
-            String serverIp = AttributeKeyEnum.SERVER_IP.getAttributeValue(ctx.channel());
             long allIdleTimeInMillis = getAllIdleTimeInMillis();
-            log.error("关闭服务端连接[{}], 会话[{}]: {}", serverIp, AttributeKeyEnum.SESSION_ID.getAttributeValue(ctx.channel()), "心跳响应丢失超过" + allIdleTimeInMillis * 2 + "毫秒");
+            log.error("关闭服务端连接[{}], 会话[{}]: {}", serverIp, sessionId, "心跳响应丢失超过" + allIdleTimeInMillis * 2 + "毫秒");
             ctx.close();
             return;
         }
